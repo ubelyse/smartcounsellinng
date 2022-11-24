@@ -140,17 +140,6 @@ public class UserReport extends AppCompatActivity {
         noCell.setHorizontalAlignment(Element.ALIGN_CENTER);
         noCell.setVerticalAlignment(Element.ALIGN_CENTER);
 
-//        Chunk nameText = new Chunk("Address", white);
-//        PdfPCell nameCell = new PdfPCell(new Phrase(nameText));
-//        nameCell.setFixedHeight(50);
-//        nameCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-//        nameCell.setVerticalAlignment(Element.ALIGN_CENTER);
-//
-//        Chunk phoneText = new Chunk("dateOfBirth", white);
-//        PdfPCell phoneCell = new PdfPCell(new Phrase(phoneText));
-//        phoneCell.setFixedHeight(50);
-//        phoneCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-//        phoneCell.setVerticalAlignment(Element.ALIGN_CENTER);
 
         Chunk amountText = new Chunk("Full Name", white);
         PdfPCell amountCell = new PdfPCell(new Phrase(amountText));
@@ -164,7 +153,7 @@ public class UserReport extends AppCompatActivity {
         phnoCell.setHorizontalAlignment(Element.ALIGN_CENTER);
         phnoCell.setVerticalAlignment(Element.ALIGN_CENTER);
 
-        Chunk Rle = new Chunk("D.O.B", white);
+        Chunk Rle = new Chunk("Date of Birth", white);
         PdfPCell rleCell = new PdfPCell(new Phrase(Rle));
         rleCell.setFixedHeight(50);
         rleCell.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -179,8 +168,7 @@ public class UserReport extends AppCompatActivity {
 
 
         table.addCell(noCell);
-//        table.addCell(nameCell);
-//        table.addCell(phoneCell);
+
         table.addCell(amountCell);
         table.addCell(phnoCell);
         table.addCell(rleCell);
@@ -204,8 +192,7 @@ public class UserReport extends AppCompatActivity {
 
 
             table.addCell(id + ". ");
-//            table.addCell(address);
-//            table.addCell(dateOfBirth);
+
             table.addCell(fullName);
             table.addCell(phoneNumber);
             table.addCell(dob);

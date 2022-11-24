@@ -133,9 +133,9 @@ public class SearchProfileActivity extends AppCompatActivity{
                         txtPhoneNumber.setText(account.getPhoneNumber() + "");
                         txtDateOfBirth.setText(account.getDateOfBirth());
                         txtAddress.setText(account.getAddress());
-                        String gender = account.isDisease()? "Addict": "Depression";
+                        String gender = account.isGender()? "Addict": "Depression";
                         txtGender.setText(gender);
-                        txtDescription.setText(account.getStatus());
+                        txtDescription.setText(account.getDescription());
 
                         getAvatar();
                         getBackground();

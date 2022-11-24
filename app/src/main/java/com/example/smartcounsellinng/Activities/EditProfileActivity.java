@@ -88,8 +88,8 @@ public class EditProfileActivity extends AppCompatActivity {
                 account.setFullName(txtFullName.getText().toString().trim());
                 account.setAddress(txtAddress.getText().toString().trim());
                 account.setPhoneNumber(txtPhoneNumber.getText().toString().trim());
-                account.setDisease(gender);
-                account.setStatus(txtDescription.getText().toString().trim());
+                account.setGender(gender);
+                account.setDescription(txtDescription.getText().toString().trim());
                 account.setDateOfBirth(txtDateOfBirth.getText().toString().trim());
 
                 doctor.setFullName(txtFullName.getText().toString().trim());
@@ -152,8 +152,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 dateOfBirth = bundle.getString("DATEOFBIRTH");
                 description = bundle.getString("DESCRIPTION");
 
-                description1 = bundle.getString("STATUS");
-                gender = bundle.getBoolean("GENDER");
+                gender = bundle.getBoolean("DISEASE");
                 account = new Account(userName, description1, fullName, gender, address, phoneNumber, dateOfBirth);
                 doctor=new Doctor(userName, phoneNumber, address, dateOfBirth, description, role, fullName);
 
@@ -165,14 +164,14 @@ public class EditProfileActivity extends AppCompatActivity {
             txtFullName.setText(account.getFullName());
             txtPhoneNumber.setText(account.getPhoneNumber() + "");
             txtDateOfBirth.setText(account.getDateOfBirth());
-//            gender.equals(account.getDisease());
+
             if (gender) {
                 ((RadioButton)radioGroupGender.getChildAt(1)).setChecked(true);
             } else {
                 ((RadioButton)radioGroupGender.getChildAt(2)).setChecked(true);
             }
             txtAddress.setText(account.getAddress());
-            txtDescription.setText(account.getStatus());
+            txtDescription.setText(account.getDescription());
         }
 
         else if (doctor != null) {

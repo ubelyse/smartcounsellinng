@@ -9,7 +9,7 @@ public class Doctor {
     private String fullName;
     private String Role;
     private String image_url;
-//    private boolean gender;
+    private boolean gender;
 
     private boolean showMenu = false;
 
@@ -26,7 +26,7 @@ public class Doctor {
         this.address = address;
         this.dateOfBirth = dateOfBirth;
         if(description.isEmpty())
-            this.description = "Description is not available";
+            this.description = "New";
         else
             this.description = description;
         this.fullName = fullName;

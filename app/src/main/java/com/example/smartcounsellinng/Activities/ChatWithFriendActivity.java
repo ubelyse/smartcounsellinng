@@ -271,7 +271,7 @@ public class ChatWithFriendActivity extends AppCompatActivity implements ValueEv
 //                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 
-                    nodeGetMyName = FirebaseDatabase.getInstance().getReference().child("users").child(uidFriendChat).child("status");
+                    nodeGetMyName = FirebaseDatabase.getInstance().getReference().child("users").child(uidFriendChat).child("description");
                     nodeGetMyName.setValue("In Progress");
                 }
                 break;

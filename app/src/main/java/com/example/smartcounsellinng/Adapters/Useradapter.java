@@ -64,6 +64,7 @@ public class Useradapter extends FirebaseRecyclerAdapter<User,Useradapter.myview
                 name.setText(model.getFullName());
                 phoneno.setText(model.getPhoneNumber());
                 email.setText(model.getUsername());
+//                role.setText(model.isGender());
 
                 dialogPlus.show();
                 submit.setOnClickListener(new View.OnClickListener() {
@@ -71,11 +72,11 @@ public class Useradapter extends FirebaseRecyclerAdapter<User,Useradapter.myview
                     public void onClick(View view) {
                         Map<String,Object> map=new HashMap<>();
                         map.put("address",address.getText().toString());
-                        map.put("status",descri.getText().toString());
+                        map.put("description",descri.getText().toString());
                         map.put("fullName",name.getText().toString());
                         map.put("phoneNumber",phoneno.getText().toString());
                         map.put("email",email.getText().toString());
-                        map.put("disease",role.getText().toString());
+//                        map.put("disease",role.getText().toString());
 
                         FirebaseDatabase.getInstance().getReference().child("users")
                                 .child(getRef(position).getKey()).updateChildren(map)

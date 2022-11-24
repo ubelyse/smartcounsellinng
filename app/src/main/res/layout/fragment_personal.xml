@@ -65,35 +65,36 @@
             android:shrinkColumns="*"
             android:stretchColumns="*">
 
-<!--            <TableRow>-->
-<!--                <TextView-->
-<!--                    android:id="@+id/labelGender"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="@dimen/margin_table_row"-->
-<!--                    android:layout_marginBottom="@dimen/margin_table_row"-->
-<!--                    android:text="@string/gender"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:paddingLeft="@dimen/padding_left_table_row"-->
-<!--                    android:textSize="@dimen/text_size_fragment_personal"-->
-<!--                    android:layout_span="1"/>-->
+            <TableRow>
+                <TextView
+                    android:id="@+id/labelGender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_table_row"
+                    android:layout_marginBottom="@dimen/margin_table_row"
+                    android:text="Disease"
+                    android:textStyle="bold"
+                    android:paddingLeft="@dimen/padding_left_table_row"
+                    android:textSize="@dimen/text_size_fragment_personal"
+                    android:layout_span="1"/>
 
-<!--                <TextView-->
-<!--                    android:id="@+id/textViewGender"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="@dimen/margin_table_row"-->
-<!--                    android:layout_marginBottom="@dimen/margin_table_row"-->
-<!--                    android:textSize="@dimen/text_size_fragment_personal"-->
-<!--                    android:layout_span="7"/>-->
-<!--            </TableRow>-->
+                <TextView
+                    android:id="@+id/textViewGender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_table_row"
+                    android:layout_marginBottom="@dimen/margin_table_row"
+                    android:textSize="@dimen/text_size_fragment_personal"
+                    android:layout_span="7"/>
+            </TableRow>
 
-<!--            <View android:background="@color/gray"-->
-<!--                android:layout_width ="match_parent"-->
-<!--                android:layout_height="1dip"-->
-<!--                android:layout_marginTop="2dp"-->
-<!--                android:layout_marginBottom="2dp"-->
-<!--                android:elevation="2dp"/>-->
+            <View android:background="@color/gray"
+                android:id="@+id/lblgender"
+                android:layout_width ="match_parent"
+                android:layout_height="1dip"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:elevation="2dp"/>
 
             <TableRow>
                 <TextView
@@ -187,35 +188,35 @@
                 android:layout_marginBottom="2dp"
                 android:elevation="2dp"/>
 
-<!--            <TableRow>-->
-<!--                <TextView-->
-<!--                    android:id="@+id/labelDescription"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="@dimen/margin_table_row"-->
-<!--                    android:layout_marginBottom="@dimen/margin_table_row"-->
-<!--                    android:text="@string/description"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:paddingLeft="@dimen/padding_left_table_row"-->
-<!--                    android:textSize="@dimen/text_size_fragment_personal"-->
-<!--                    android:layout_span="1"/>-->
+            <TableRow>
+                <TextView
+                    android:id="@+id/labelDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_table_row"
+                    android:layout_marginBottom="@dimen/margin_table_row"
+                    android:text="@string/description"
+                    android:textStyle="bold"
+                    android:paddingLeft="@dimen/padding_left_table_row"
+                    android:textSize="@dimen/text_size_fragment_personal"
+                    android:layout_span="1"/>
 
-<!--                <TextView-->
-<!--                    android:id="@+id/textViewDescription"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="@dimen/margin_table_row"-->
-<!--                    android:layout_marginBottom="@dimen/margin_table_row"-->
-<!--                    android:textSize="@dimen/text_size_fragment_personal"-->
-<!--                    android:layout_span="7" />-->
-<!--            </TableRow>-->
+                <TextView
+                    android:id="@+id/textViewDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_table_row"
+                    android:layout_marginBottom="@dimen/margin_table_row"
+                    android:textSize="@dimen/text_size_fragment_personal"
+                    android:layout_span="7" />
+            </TableRow>
 
-<!--            <View android:background="@color/gray"-->
-<!--                android:layout_width ="match_parent"-->
-<!--                android:layout_height="1dip"-->
-<!--                android:layout_marginTop="2dp"-->
-<!--                android:layout_marginBottom="2dp"-->
-<!--                android:elevation="2dp"/>-->
+            <View android:background="@color/gray"
+                android:layout_width ="match_parent"
+                android:layout_height="1dip"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:elevation="2dp"/>
 
             <TableRow
                 android:gravity="center_horizontal">

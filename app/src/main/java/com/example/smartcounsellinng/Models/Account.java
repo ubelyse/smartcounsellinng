@@ -5,8 +5,8 @@ public class Account {
     private String username;
     private String fullName;
     private String address;
-    private String status;
-    private boolean disease;
+    private String description;
+    private boolean gender;
     private String phoneNumber;
     private String dateOfBirth;
 
@@ -15,19 +15,19 @@ public class Account {
 
     }
 
-    public Account(String username, String status, String fullName, boolean disease, String address,
+    public Account(String username, String description, String fullName, boolean gender, String address,
                    String phoneNumber, String dateOfBirth) {
         this.username = username;
 
-        if(status.isEmpty())
-            this.status = "New";
+        if(description.isEmpty())
+            this.description = "New";
         else
-            this.status = status;
+            this.description = description;
         this.fullName = fullName;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.dateOfBirth = dateOfBirth;
-        this.disease = disease;
+        this.gender = gender;
     }
 
     public String getUsername() {
@@ -46,14 +46,13 @@ public class Account {
         this.fullName = fullName;
     }
 
-    public boolean isDisease() {
-        return disease;
+    public boolean isGender() {
+        return gender;
     }
 
-    public void setDisease(boolean disease) {
-        this.disease = disease;
+    public void setGender(boolean gender) {
+        this.gender = gender;
     }
-
 
     public String getAddress() {
         return address;
@@ -79,12 +78,12 @@ public class Account {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getStatus() {
-        return status;
+    public String getDescription() {
+        return description;
     }
 
-    public void setStatus(String status1) {
-        this.status = status1;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 }

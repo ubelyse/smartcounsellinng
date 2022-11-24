@@ -89,7 +89,7 @@ public class FriendsFragment extends Fragment{
                 for (DataSnapshot snapshot : nodeDoc.getChildren()) {
                     if (!snapshot.getKey().equals(FirebaseAuth.getInstance().getUid())) {
                         Account account = snapshot.getValue(Account.class);
-                        if (!hashMapFriends.containsValue(account) && account.getStatus().equals("New")) { // check your friends list without friends
+                        if (!hashMapFriends.containsValue(account) && account.getDescription().equals("New")) { // check your friends list without friends
                             hashMapFriends.put(snapshot.getKey(), account);
                         }
                     }

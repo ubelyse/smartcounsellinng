@@ -37,7 +37,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener{
 
     private DatabaseReference nodeMoreInfo, nodeMoreInfo2;
 
-    String status = "";
+//    String status = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

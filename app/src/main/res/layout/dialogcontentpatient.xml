@@ -48,13 +48,13 @@
         android:layout_marginTop="10dp"
         android:textSize="20sp"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Disease"
-        android:id="@+id/drole"
-        android:layout_marginTop="10dp"
-        android:textSize="20sp"/>
+<!--    <EditText-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="Disease"-->
+<!--        android:id="@+id/drole"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:textSize="20sp"/>-->
 
     <EditText
         android:layout_width="match_parent"
