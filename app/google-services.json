@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "746816752277",
+    "firebase_url": "https://smartcounsellinng-default-rtdb.firebaseio.com",
+    "project_id": "smartcounsellinng",
+    "storage_bucket": "smartcounsellinng.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:746816752277:android:412632b0a8ea04f083699c",
+        "android_client_info": {
+          "package_name": "com.example.smartcounsellinng"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "746816752277-aekjm1v530ln7p5g5igufspll2scqvod.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcul3BjCTFQXAsJjIitanEMxTgC2wgDqI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "746816752277-aekjm1v530ln7p5g5igufspll2scqvod.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

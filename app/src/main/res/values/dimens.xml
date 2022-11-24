@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="text_size_fragment_personal">17sp</dimen>
+    <dimen name="text_size_edit_profile">18sp</dimen>
+    <dimen name="drawable_padding">5dp</dimen>
+    <dimen name="margin_top_10dp">10dp</dimen>
+    <dimen name="padding_left_right_20dp">20dp</dimen>
+    <dimen name="padding_left_right_30dp">30dp</dimen>
+    <dimen name="padding_left_table_row">15dp</dimen>
+    <dimen name="margin_table_row">10dp</dimen>
+    <dimen name="margin_table_row_search_profile">7dp</dimen>
+    <dimen name="margin_top_register_10dp">10dp</dimen>
+    <dimen name="padding_edit_text_7dp">7dp</dimen>
+    <dimen name="text_size_title_toolbar">18sp</dimen>
+
+    <dimen name="padding_10_dp">10dp</dimen>
+    <dimen name="speech_bubble_corners">10dp</dimen>
+    <dimen name="speech_bubble_corners_plus_tail">15dp</dimen>
+    <dimen name="speech_bubble_spacing">5dp</dimen>
+    <dimen name="speech_bubble_tail">25dp</dimen>
+    <dimen name="margin_20_dp">20dp</dimen>
+    <dimen name="margin_30_dp">30dp</dimen>
+    <dimen name="text_size_16_sp">16sp</dimen>
+    <dimen name="margin_10_dp">10dp</dimen>
+    <dimen name="text_size_14_sp">14sp</dimen>
+    <dimen name="padding_20_dp">20dp</dimen>
+    <dimen name="padding_50_dp">50dp</dimen>
+
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="ob_desc_padding">30dp</dimen>
+    <dimen name="ob_banner_height">300dp</dimen>
+    <dimen name="ob_header_text_size">25sp</dimen>
+    <dimen name="ob_desc_text_size">18sp</dimen>
+
+    <dimen name="list_item_padding_sides">16dp</dimen>
+    <dimen name="list_item_height">80dp</dimen>
+</resources>
