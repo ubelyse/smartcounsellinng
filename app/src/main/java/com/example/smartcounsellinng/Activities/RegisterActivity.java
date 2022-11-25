@@ -125,6 +125,21 @@ public class RegisterActivity extends AppCompatActivity implements View.OnFocusC
                     return;
                 }
 
+                if (TextUtils.isEmpty(fullname)) {
+                    Toast.makeText(getApplicationContext(), "Please enter your Names!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(address)) {
+                    Toast.makeText(getApplicationContext(), "Please enter your Address!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(phonenumber)) {
+                    Toast.makeText(getApplicationContext(), "Please enter your Phone Number!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 if (TextUtils.isEmpty(password)) {
                     Toast.makeText(getApplicationContext(), "Please enter a password!", Toast.LENGTH_SHORT).show();
                     return;

@@ -24,8 +24,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.smartcounsellinng.Activities.Admin;
 import com.example.smartcounsellinng.Activities.ChatWithFriendActivity;
+import com.example.smartcounsellinng.Activities.LoginActivity;
 import com.example.smartcounsellinng.Adapters.ListFriendAdapter;
+import com.example.smartcounsellinng.MainActivity;
 import com.example.smartcounsellinng.Models.Account;
 import com.example.smartcounsellinng.Models.AccountRequest;
 import com.example.smartcounsellinng.R;
@@ -71,12 +74,45 @@ public class FriendsFragment extends Fragment{
         listViewFriend.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                AccountRequest fr = (AccountRequest)parent.getAdapter().getItem(position);
-                Intent iChat = new Intent(getActivity(), ChatWithFriendActivity.class);
-                iChat.putExtra("UID_Friend",fr.getUid());
-                iChat.putExtra("Name_Friend",fr.getFullName());
-                iChat.putExtra("From","Friend_Fragment");
-                startActivity(iChat);
+
+                FirebaseAuth firebaseAuth;
+                firebaseAuth = FirebaseAuth.getInstance();
+                String uid = firebaseAuth.getCurrentUser().getUid();
+
+                DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.child("users").child(uid).exists()){
+                            AccountRequest fr = (AccountRequest)parent.getAdapter().getItem(position);
+                            listViewFriend.setAdapter(listFriendAdapter);
+
+                        }
+                        else if (snapshot.child("doctors").child(uid).exists()){
+                            AccountRequest fr = (AccountRequest)parent.getAdapter().getItem(position);
+                            Intent iChat = new Intent(getActivity(), ChatWithFriendActivity.class);
+                            iChat.putExtra("UID_Friend",fr.getUid());
+                            iChat.putExtra("Name_Friend",fr.getFullName());
+                            iChat.putExtra("From","Friend_Fragment");
+                            startActivity(iChat);
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+
+//                AccountRequest fr = (AccountRequest)parent.getAdapter().getItem(position);
+//                Intent iChat = new Intent(getActivity(), ChatWithFriendActivity.class);
+//                iChat.putExtra("UID_Friend",fr.getUid());
+//                iChat.putExtra("Name_Friend",fr.getFullName());
+//                iChat.putExtra("From","Friend_Fragment");
+//                startActivity(iChat);
             }
         });
 

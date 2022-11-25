@@ -141,7 +141,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 mAuthProgressDialog.dismiss();
                                 if (!task.isSuccessful()) {
-                                    Toast.makeText(LoginActivity.this, "Wrong account information or password. Please check again!!",
+                                    Toast.makeText(LoginActivity.this, "Wrong account information or password. Please check your internet again!!",
                                             Toast.LENGTH_LONG).show();
                                 } else {
                                     String uid= task.getResult().getUser().getUid();
