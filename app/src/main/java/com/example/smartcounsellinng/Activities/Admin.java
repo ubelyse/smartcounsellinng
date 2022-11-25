@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.smartcounsellinng.Activities.LoginActivity;
 import com.example.smartcounsellinng.R;
 import com.example.smartcounsellinng.Reports.DoctorReport;
 import com.example.smartcounsellinng.Reports.ReportActivity;
@@ -61,9 +62,9 @@ public class Admin extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     List<Constants> UsersList;
     private FirebaseAnalytics mFirebaseAnalytics;
-
-    private MaterialCardView mseeuser,mseedoc,mdocreport,mreport,musereport;
     private Button logt;
+
+    private MaterialCardView mseeuser,mseedoc,mdocreport,musereport;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +76,7 @@ public class Admin extends AppCompatActivity {
         mseedoc=findViewById(R.id.btnseedoctors);
         musereport=findViewById(R.id.btnusereport);
         mdocreport=findViewById(R.id.btndocreport);
-//        mreport=findViewById(R.id.btnreport);
-        logt = findViewById(R.id.btn_logout);
+        logt=findViewById(R.id.btn_logout);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -115,14 +115,6 @@ public class Admin extends AppCompatActivity {
         });
 
 
-//        mreport.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent=new Intent(Admin.this, ReportActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-
         logt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,7 +123,21 @@ public class Admin extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_admin, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.logout) {
+            logout();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     private void logout() {
         firebaseAuth.getInstance().signOut();

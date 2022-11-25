@@ -16,10 +16,10 @@
         android:background="@drawable/button"
         android:onClick="previewDisabledUsersReport"
         android:padding="8dp"
-        android:text="Report"
+        android:text="@string/disabled_users_report"
         android:textAllCaps="false"
         style="?android:buttonBarButtonStyle"
-        android:textColor="@color/white"
+        android:textColor="@android:color/white"
         android:textSize="14sp"/>
 
     <com.github.barteksc.pdfviewer.PDFView

@@ -66,6 +66,8 @@ public class UserReport extends AppCompatActivity {
         userRef = FirebaseDatabase.getInstance().getReference().child("users");
         payRef = FirebaseDatabase.getInstance().getReference().child("users");
         pdfView = findViewById(R.id.payment_pdf_viewer);
+        paymentUsersList = new ArrayList<>();
+        //create files in charity care folder
 
         Button reportButton = findViewById(R.id.button_disable_report);
         reportButton.setOnClickListener(new View.OnClickListener() {
@@ -75,8 +77,7 @@ public class UserReport extends AppCompatActivity {
             }
         });
 
-        paymentUsersList = new ArrayList<>();
-        //create files in charity care folder
+
         payfile = new File("/storage/emulated/0/Report/");
         //check if they exist, if not create them(directory)
         if ( !payfile.exists()) {
@@ -97,13 +98,13 @@ public class UserReport extends AppCompatActivity {
 //                    pays.setDateOfBirth(snapshot.child("dateOfBirth").getValue().toString());
                     pays.setFullName(snapshot.child("fullName").getValue().toString());
                     pays.setPhoneNumber(snapshot.child("phoneNumber").getValue().toString());
-                    pays.setDateOfBirth(snapshot.child("dateOfBirth").getValue().toString());
+                    pays.setDescription(snapshot.child("description").getValue().toString());
 
 //                    Log.d("Payment", "Address: " + pays.getAddress());
 //                    Log.d("Payment", "dateOfBirth: " + pays.getDateOfBirth());
                     Log.d("Payment", "Full Name: " + pays.getFullName());
                     Log.d("Payment", "phoneNumber: " + pays.getPhoneNumber());
-                    Log.d("Payment", "D.O.B: " + pays.getDateOfBirth());
+                    Log.d("Payment", "Description: " + pays.getDescription());
 
                     paymentUsersList.add(pays);
                 }
@@ -140,6 +141,17 @@ public class UserReport extends AppCompatActivity {
         noCell.setHorizontalAlignment(Element.ALIGN_CENTER);
         noCell.setVerticalAlignment(Element.ALIGN_CENTER);
 
+//        Chunk nameText = new Chunk("Address", white);
+//        PdfPCell nameCell = new PdfPCell(new Phrase(nameText));
+//        nameCell.setFixedHeight(50);
+//        nameCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+//        nameCell.setVerticalAlignment(Element.ALIGN_CENTER);
+//
+//        Chunk phoneText = new Chunk("dateOfBirth", white);
+//        PdfPCell phoneCell = new PdfPCell(new Phrase(phoneText));
+//        phoneCell.setFixedHeight(50);
+//        phoneCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+//        phoneCell.setVerticalAlignment(Element.ALIGN_CENTER);
 
         Chunk amountText = new Chunk("Full Name", white);
         PdfPCell amountCell = new PdfPCell(new Phrase(amountText));
@@ -153,7 +165,7 @@ public class UserReport extends AppCompatActivity {
         phnoCell.setHorizontalAlignment(Element.ALIGN_CENTER);
         phnoCell.setVerticalAlignment(Element.ALIGN_CENTER);
 
-        Chunk Rle = new Chunk("Date of Birth", white);
+        Chunk Rle = new Chunk("Status", white);
         PdfPCell rleCell = new PdfPCell(new Phrase(Rle));
         rleCell.setFixedHeight(50);
         rleCell.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -168,7 +180,8 @@ public class UserReport extends AppCompatActivity {
 
 
         table.addCell(noCell);
-
+//        table.addCell(nameCell);
+//        table.addCell(phoneCell);
         table.addCell(amountCell);
         table.addCell(phnoCell);
         table.addCell(rleCell);
@@ -188,11 +201,12 @@ public class UserReport extends AppCompatActivity {
             String dateOfBirth = pay.getDateOfBirth();
             String fullName = pay.getFullName();
             String phoneNumber = pay.getPhoneNumber();
-            String dob = pay.getDateOfBirth();
+            String dob = pay.getDescription();
 
 
             table.addCell(id + ". ");
-
+//            table.addCell(address);
+//            table.addCell(dateOfBirth);
             table.addCell(fullName);
             table.addCell(phoneNumber);
             table.addCell(dob);

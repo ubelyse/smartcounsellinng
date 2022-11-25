@@ -2,6 +2,7 @@ package com.example.smartcounsellinng.Activities;
 
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.MediaPlayer;
@@ -68,6 +69,7 @@ public class ChatWithFriendActivity extends AppCompatActivity implements ValueEv
     private DatabaseReference databaseReference;
 
     private DatabaseReference nodeRoot, nodeUsers, nodeStatus;
+    private ProgressDialog mAuthProgressDialog;
 
     private DatabaseReference nodeRefreshMessage, nodeMessage, nodeInfoMine, nodeInfoFriend, nodeGetMyName,nodeGetName;
     private String myName = "";
@@ -360,6 +362,14 @@ public class ChatWithFriendActivity extends AppCompatActivity implements ValueEv
                         .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+
+
+                                    mAuthProgressDialog.show();
+                                mAuthProgressDialog= new ProgressDialog(ChatWithFriendActivity.this);
+//                                    mAuthProgressDialog = new ProgressDialog(this);
+                                    mAuthProgressDialog.setTitle("Loading...");
+                                    mAuthProgressDialog.setMessage("Image Loading into Firebase...");
+                                    mAuthProgressDialog.setCancelable(false);
 
                             }
                         });

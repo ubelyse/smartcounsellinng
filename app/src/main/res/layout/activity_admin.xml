@@ -33,7 +33,7 @@
                     android:background="@color/main_green"
                     android:src="@drawable/ic_all"
                     android:padding="15dp"
-                    android:contentDescription="TODO" />
+                    android:contentDescription="@string/todo" />
 
                 <View
                     android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="List Doctors"
+                    android:text="@string/see_doctors"
                     android:textStyle="bold"
                     android:padding="5dp"
                     android:layout_marginTop="10dp"/>
@@ -73,7 +73,7 @@
                     android:background="@color/red"
                     android:src="@drawable/ic_users"
                     android:padding="15dp"
-                    android:contentDescription="TODO" />
+                    android:contentDescription="@string/todo" />
 
                 <View
                     android:layout_width="match_parent"
@@ -84,7 +84,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="list Users"
+                    android:text="See Users"
                     android:textStyle="bold"
                     android:padding="5dp"
                     android:layout_marginTop="10dp"/>
@@ -123,7 +123,7 @@
                     android:background="@color/gray"
                     android:src="@drawable/ic_report_24"
                     android:padding="15dp"
-                    android:contentDescription="TODO" />
+                    android:contentDescription="@string/todo" />
 
                 <View
                     android:layout_width="match_parent"
@@ -163,7 +163,7 @@
                     android:background="@color/main_red"
                     android:src="@drawable/ic_report_24"
                     android:padding="15dp"
-                    android:contentDescription="TODO" />
+                    android:contentDescription="@string/todo" />
 
                 <View
                     android:layout_width="match_parent"
@@ -186,7 +186,6 @@
 
     <Button
         android:id="@+id/btn_logout"
-        android:layout_below="@id/btn_login"
         android:layout_centerHorizontal="true"
         android:textAllCaps="false"
         android:layout_marginTop="20dp"
@@ -195,5 +194,6 @@
         android:text="Logout"
         android:background="@drawable/round_button_danger"
         android:textColor="@color/white"/>
+
 
 </LinearLayout>
