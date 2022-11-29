@@ -50,6 +50,8 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TimeZone;
 import java.util.UUID;
 
@@ -272,9 +274,14 @@ public class ChatWithFriendActivity extends AppCompatActivity implements ValueEv
 
 //                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
+                    Map<String, Object> childUpdates = new HashMap<>();
 
-                    nodeGetMyName = FirebaseDatabase.getInstance().getReference().child("users").child(uidFriendChat).child("description");
-                    nodeGetMyName.setValue("In Progress");
+
+
+                    nodeGetMyName = FirebaseDatabase.getInstance().getReference().child("users");
+                    nodeGetMyName.child(uidFriendChat).child("description").setValue("In Progress");
+
+
                 }
                 break;
             case R.id.btnOpenCamera:
