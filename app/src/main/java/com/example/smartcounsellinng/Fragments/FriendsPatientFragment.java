@@ -28,6 +28,7 @@ import com.example.smartcounsellinng.Activities.Admin;
 import com.example.smartcounsellinng.Activities.ChatWithFriendActivity;
 import com.example.smartcounsellinng.Activities.LoginActivity;
 import com.example.smartcounsellinng.Adapters.ListFriendAdapter;
+import com.example.smartcounsellinng.ChatWithHeadDoctorActivity;
 import com.example.smartcounsellinng.MainActivity;
 import com.example.smartcounsellinng.Models.Account;
 import com.example.smartcounsellinng.Models.AccountRequest;
@@ -46,7 +47,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class FriendsFragment extends Fragment{
+public class FriendsPatientFragment extends Fragment{
 
     private Toolbar toolbar;
     private ImageView btnAddFriend;
@@ -59,7 +60,7 @@ public class FriendsFragment extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_friends, container, false);
+        View v = inflater.inflate(R.layout.fragment_friends_patient, container, false);
 
         toolbar = v.findViewById(R.id.toolBarSearch);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
@@ -79,49 +80,12 @@ public class FriendsFragment extends Fragment{
                 firebaseAuth = FirebaseAuth.getInstance();
                 String uid = firebaseAuth.getCurrentUser().getUid();
 
-                DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
-                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.child("users").child(uid).exists()){
-                            AccountRequest fr = (AccountRequest)parent.getAdapter().getItem(position);
-                            listViewFriend.setAdapter(listFriendAdapter);
-
-                        }
-                        else if (snapshot.child("doctors").child(uid).exists()){
-                            AccountRequest fr = (AccountRequest)parent.getAdapter().getItem(position);
-                            Intent iChat = new Intent(getActivity(), ChatWithFriendActivity.class);
-                            iChat.putExtra("UID_Friend",fr.getUid());
-                            iChat.putExtra("Name_Friend",fr.getFullName());
-                            iChat.putExtra("From","Friend_Fragment");
-                            startActivity(iChat);
-                        }
-
-                        else if (snapshot.child("head doctors").child(uid).exists()){
-                            AccountRequest fr = (AccountRequest)parent.getAdapter().getItem(position);
-                            Intent iChat = new Intent(getActivity(), ChatWithFriendActivity.class);
-                            iChat.putExtra("UID_Friend",fr.getUid());
-                            iChat.putExtra("Name_Friend",fr.getFullName());
-                            iChat.putExtra("From","Friend_Fragment");
-                            startActivity(iChat);
-                        }
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-
-
-//                AccountRequest fr = (AccountRequest)parent.getAdapter().getItem(position);
-//                Intent iChat = new Intent(getActivity(), ChatWithFriendActivity.class);
-//                iChat.putExtra("UID_Friend",fr.getUid());
-//                iChat.putExtra("Name_Friend",fr.getFullName());
-//                iChat.putExtra("From","Friend_Fragment");
-//                startActivity(iChat);
+                AccountRequest fr = (AccountRequest)parent.getAdapter().getItem(position);
+                Intent iChat = new Intent(getActivity(), ChatWithHeadDoctorActivity.class);
+                iChat.putExtra("UID_Friend",fr.getUid());
+                iChat.putExtra("Name_Friend",fr.getFullName());
+                iChat.putExtra("From","Friend_Fragment");
+                startActivity(iChat);
             }
         });
 
@@ -130,11 +94,11 @@ public class FriendsFragment extends Fragment{
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 hashMapFriends.clear();
-                DataSnapshot nodeDoc = dataSnapshot.child("users");
+                DataSnapshot nodeDoc = dataSnapshot.child("head doctors");
                 for (DataSnapshot snapshot : nodeDoc.getChildren()) {
                     if (!snapshot.getKey().equals(FirebaseAuth.getInstance().getUid())) {
                         Account account = snapshot.getValue(Account.class);
-                        if (!hashMapFriends.containsValue(account) && account.getDescription().equals("New")) { // check your friends list without friends
+                        if (!hashMapFriends.containsValue(account)) { // check your friends list without friends
                             hashMapFriends.put(snapshot.getKey(), account);
                         }
                     }

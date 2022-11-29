@@ -101,6 +101,7 @@ public class MoreInfoActivity extends AppCompatActivity implements ValueEventLis
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     DataSnapshot nodeUser=dataSnapshot.child("users").child(uidFriend);
                     DataSnapshot nodeDoc=dataSnapshot.child("doctors").child(uidFriend);
+                    DataSnapshot nodeheadDo=dataSnapshot.child("head doctors").child(uidFriend);
                     for (DataSnapshot snapshot : nodeUser.getChildren()) {
                         if (snapshot.getKey().equals(uidFriend)) {
                             account = dataSnapshot.getValue(Account.class);
@@ -108,6 +109,12 @@ public class MoreInfoActivity extends AppCompatActivity implements ValueEventLis
                     }
 
                     for (DataSnapshot snapshot : nodeDoc.getChildren()) {
+                        if (snapshot.getKey().equals(uidFriend)) {
+                            account = dataSnapshot.getValue(Account.class);
+                        }
+                    }
+
+                    for (DataSnapshot snapshot : nodeheadDo.getChildren()) {
                         if (snapshot.getKey().equals(uidFriend)) {
                             account = dataSnapshot.getValue(Account.class);
                         }
@@ -131,6 +138,7 @@ public class MoreInfoActivity extends AppCompatActivity implements ValueEventLis
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     DataSnapshot nodeDoc = dataSnapshot.child("doctors").child(uidFriend);
                     DataSnapshot nodeUser = dataSnapshot.child("users").child(uidFriend);
+                    DataSnapshot nodeHeadDo = dataSnapshot.child("head doctors").child(uidFriend);
                     if (nodeDoc.exists()) {
                         //Account account=new Account();
                         Intent iFriendProfile = new Intent(MoreInfoActivity.this, SearchProfileActivity.class);
@@ -145,6 +153,20 @@ public class MoreInfoActivity extends AppCompatActivity implements ValueEventLis
                         finish();
                     }
                     else if (nodeUser.exists()) {
+                        //Account account=new Account();
+                        Intent iFriendProfile = new Intent(MoreInfoActivity.this, SearchProfileActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("UID_Friend", uidFriend);
+                        bundle.putString("username", account.getUsername());
+                        bundle.putString("phoneNumber", account.getPhoneNumber());
+                        bundle.putString("From", "MoreInfoMessage");
+                        bundle.putString("Name_Friend", nameFriend);
+                        iFriendProfile.putExtras(bundle);
+                        startActivity(iFriendProfile);
+                        finish();
+                    }
+
+                    else if (nodeHeadDo.exists()) {
                         //Account account=new Account();
                         Intent iFriendProfile = new Intent(MoreInfoActivity.this, SearchProfileActivity.class);
                         Bundle bundle = new Bundle();

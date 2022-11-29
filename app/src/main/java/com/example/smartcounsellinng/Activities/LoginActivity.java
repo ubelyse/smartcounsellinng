@@ -99,18 +99,73 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     // there was an error
                                     Toast.makeText(LoginActivity.this, "Your account information has been changed! Please check again!!",
                                             Toast.LENGTH_LONG).show();
-                                } else
+                                }
+
+                                else
                                 {
                                     final FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     String uid = firebaseAuth.getCurrentUser().getUid();
-                                    Bundle bundle = new Bundle();
-                                    bundle.putString("UID", uid);
-                                    intent.putExtras(bundle);
-                                    startActivity(intent);
-                                    mFirebaseAnalytics.logEvent("login",bundle);
-                                    finish();
+//                                    Bundle bundle = new Bundle();
+//                                    bundle.putString("UID", uid);
+//                                    intent.putExtras(bundle);
+//                                    startActivity(intent);
+//                                    mFirebaseAnalytics.logEvent("login",bundle);
+//                                    finish();
+//
+                                    DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
+                                    databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            if (snapshot.child("users").child(uid).exists()){
+                                                saveFile(email,password);
+                                                Intent intent = new Intent(LoginActivity.this, MainPatientActivity.class);
+                                                String uid = firebaseAuth.getCurrentUser().getUid();
+                                                Bundle bundle = new Bundle();
+                                                bundle.putString("UID", uid);
+                                                intent.putExtras(bundle);
+                                                overridePendingTransition(R.anim.animation_in,R.anim.animation_out);
+                                                startActivity(intent);
+                                                finish();
+                                            }
+                                            else if (snapshot.child("doctors").child(uid).exists()){
+                                                saveFile(email,password);
+                                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                                String uid = firebaseAuth.getCurrentUser().getUid();
+                                                Bundle bundle = new Bundle();
+                                                bundle.putString("UID", uid);
+                                                intent.putExtras(bundle);
+                                                overridePendingTransition(R.anim.animation_in,R.anim.animation_out);
+                                                startActivity(intent);
+                                                finish();
+                                            }
+
+                                            else if (snapshot.child("head doctors").child(uid).exists()){
+                                                saveFile(email,password);
+                                                Intent intent = new Intent(LoginActivity.this, HeadDoctorsAdmin.class);
+                                                String uid = firebaseAuth.getCurrentUser().getUid();
+                                                Bundle bundle = new Bundle();
+                                                bundle.putString("UID", uid);
+                                                intent.putExtras(bundle);
+                                                overridePendingTransition(R.anim.animation_in,R.anim.animation_out);
+                                                startActivity(intent);
+                                                finish();
+                                            }
+
+                                            else if(snapshot.child("admin").exists()){
+                                                Intent intent=new Intent(LoginActivity.this,Admin.class);
+                                                startActivity(intent);
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+
+
                                 }
                             }
 
@@ -153,7 +208,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                                             if (snapshot.child("users").child(uid).exists()){
                                                 saveFile(email,password);
-                                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                                Intent intent = new Intent(LoginActivity.this, MainPatientActivity.class);
                                                 String uid = firebaseAuth.getCurrentUser().getUid();
                                                 Bundle bundle = new Bundle();
                                                 bundle.putString("UID", uid);
@@ -173,6 +228,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                                 startActivity(intent);
                                                 finish();
                                             }
+
+                                            else if (snapshot.child("head doctors").child(uid).exists()){
+                                                saveFile(email,password);
+                                                Intent intent = new Intent(LoginActivity.this, HeadDoctorsAdmin.class);
+                                                String uid = firebaseAuth.getCurrentUser().getUid();
+                                                Bundle bundle = new Bundle();
+                                                bundle.putString("UID", uid);
+                                                intent.putExtras(bundle);
+                                                overridePendingTransition(R.anim.animation_in,R.anim.animation_out);
+                                                startActivity(intent);
+                                                finish();
+                                            }
+
                                             else if(snapshot.child("admin").exists()){
                                                 Intent intent=new Intent(LoginActivity.this,Admin.class);
                                                 startActivity(intent);

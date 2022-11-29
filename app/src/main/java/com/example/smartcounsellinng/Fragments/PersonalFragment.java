@@ -183,6 +183,34 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
             }
         });
 
+        databaseReference.child("head doctors").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Iterable<DataSnapshot> node = dataSnapshot.getChildren();
+
+                for (DataSnapshot child : node) {
+                    if(child.getKey().equals(uid)) {
+                        account = child.getValue(Account.class);
+                    }
+                }
+                if (account != null) {
+                    txtFullName.setText(account.getFullName());
+                    txtPhoneNumber.setText(account.getPhoneNumber()+"");
+                    txtDateOfBirth.setText(account.getDateOfBirth());
+                    txtAddress.setText(account.getAddress());
+                    txtGender.setVisibility(View.INVISIBLE);
+                    labelgender.setVisibility(View.INVISIBLE);
+                    labgen.setVisibility(View.INVISIBLE);
+                    txtDescription.setText(account.getDescription());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         return v;
     }
 

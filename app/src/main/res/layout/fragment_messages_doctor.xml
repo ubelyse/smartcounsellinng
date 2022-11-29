@@ -9,53 +9,51 @@
     android:focusableInTouchMode="true">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolBarSearch"
+        android:id="@+id/toolBarSearchMessages"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:background="@drawable/background_toolbar"
-        app:titleTextColor="@color/white">
+        app:titleTextColor="@color/white"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
             <TextView
-                android:id="@+id/editTextSearchInListFriend"
+                android:id="@+id/editTextSearchRecentlyChat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Patient List"
+                android:hint="Message"
                 android:textColorHint="@color/white"
                 android:textSize="18sp"
                 android:layout_marginRight="50dp"
+                android:drawablePadding="5dp"
                 android:paddingStart="15dp"
                 android:textColor="@color/white"
                 android:background="@android:color/transparent"
                 android:layout_marginTop="10dp"/>
 
+            <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:id="@+id/btnNewConversation"-->
+            <!--android:src="@drawable/icon_add_messages"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_marginEnd="10dp"/>-->
+
         </RelativeLayout>
 
     </androidx.appcompat.widget.Toolbar>
 
-    <RelativeLayout
-        android:id="@+id/relativeListRequest"
-        android:layout_below="@+id/toolBarSearch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"/>
-
-    <View android:background="@color/gray"
-        android:layout_width ="match_parent"
-        android:layout_height="1dip"
-        android:layout_below="@id/relativeListRequest"
-        android:elevation="2dp"
-        android:id="@+id/lineListRequest"/>
-
     <ListView
-        android:id="@+id/listViewFriend"
-        android:layout_below="@id/lineListRequest"
+        android:id="@+id/listViewRecentlyChat"
+        android:layout_below="@id/toolBarSearchMessages"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     </ListView>
+
 
 </RelativeLayout>

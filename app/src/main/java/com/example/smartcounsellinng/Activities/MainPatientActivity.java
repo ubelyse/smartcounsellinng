@@ -1,4 +1,4 @@
-package com.example.smartcounsellinng;
+package com.example.smartcounsellinng.Activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.smartcounsellinng.Adapters.ViewPagerAdapter;
 import com.example.smartcounsellinng.Fragments.FriendsFragment;
-import com.example.smartcounsellinng.Fragments.MessagesDoctorFragment;
+import com.example.smartcounsellinng.Fragments.FriendsPatientFragment;
 import com.example.smartcounsellinng.Fragments.MessagesFragment;
 import com.example.smartcounsellinng.Fragments.PersonalFragment;
 import com.example.smartcounsellinng.Fragments.SettingsFragment;
@@ -26,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 import java.util.Vector;
 
-public class MainActivity extends AppCompatActivity implements TabHost.OnTabChangeListener, ViewPager.OnPageChangeListener{
+public class MainPatientActivity extends AppCompatActivity implements TabHost.OnTabChangeListener, ViewPager.OnPageChangeListener{
 
     private TabHost tabHost;
     private ViewPager viewPager;
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements TabHost.OnTabChan
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_patient);
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
@@ -85,8 +85,8 @@ public class MainActivity extends AppCompatActivity implements TabHost.OnTabChan
         PersonalFragment personalFragment = new PersonalFragment();
         personalFragment.setArguments(info); // info la thang bundle gui qua personal
 
-        fragments.add(new MessagesDoctorFragment());
-        fragments.add(new FriendsFragment());
+        fragments.add(new MessagesFragment());
+        fragments.add(new FriendsPatientFragment());
         fragments.add(personalFragment);
         fragments.add(new SettingsFragment());
 
@@ -105,22 +105,22 @@ public class MainActivity extends AppCompatActivity implements TabHost.OnTabChan
 
         TabHost.TabSpec tabMessages = tabHost.newTabSpec("Message");
         tabMessages.setIndicator("",getResources().getDrawable(R.drawable.icon_messages_selector));
-        tabMessages.setContent(new FakeContent(MainActivity.this));
+        tabMessages.setContent(new FakeContent(MainPatientActivity.this));
         tabHost.addTab(tabMessages);
 
         TabHost.TabSpec tabFriends = tabHost.newTabSpec("Friend");
         tabFriends.setIndicator("",getResources().getDrawable(R.drawable.icon_friends_selector));
-        tabFriends.setContent(new FakeContent(MainActivity.this));
+        tabFriends.setContent(new FakeContent(MainPatientActivity.this));
         tabHost.addTab(tabFriends);
 
         TabHost.TabSpec tabPersonal = tabHost.newTabSpec("I");
         tabPersonal.setIndicator("",getResources().getDrawable(R.drawable.icon_personal_selector));
-        tabPersonal.setContent(new FakeContent(MainActivity.this));
+        tabPersonal.setContent(new FakeContent(MainPatientActivity.this));
         tabHost.addTab(tabPersonal);
 
         TabHost.TabSpec tabSettings = tabHost.newTabSpec("Setting");
         tabSettings.setIndicator("",getResources().getDrawable(R.drawable.icon_settings_selector));
-        tabSettings.setContent(new FakeContent(MainActivity.this));
+        tabSettings.setContent(new FakeContent(MainPatientActivity.this));
         tabHost.addTab(tabSettings);
 
 

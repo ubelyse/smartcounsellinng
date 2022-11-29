@@ -34,7 +34,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class MessagesFragment extends Fragment implements ChildEventListener {
+public class MessagesDoctorFragment extends Fragment implements ChildEventListener {
 
     private DatabaseReference nodeRoot;
 
@@ -47,7 +47,7 @@ public class MessagesFragment extends Fragment implements ChildEventListener {
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_messages, container, false);
+        View v = inflater.inflate(R.layout.fragment_messages_doctor, container, false);
 
         recentlyChatList = new ArrayList<>();
         listviewRecentlyChat = (ListView)v.findViewById(R.id.listViewRecentlyChat);

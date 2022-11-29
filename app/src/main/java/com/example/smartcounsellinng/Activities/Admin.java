@@ -22,6 +22,7 @@ import com.example.smartcounsellinng.R;
 import com.example.smartcounsellinng.Reports.DoctorReport;
 import com.example.smartcounsellinng.Reports.ReportActivity;
 import com.example.smartcounsellinng.Reports.ShowDoctors;
+import com.example.smartcounsellinng.Reports.ShowHeadDoc;
 import com.example.smartcounsellinng.Reports.ShowUsers;
 import com.example.smartcounsellinng.Reports.UserReport;
 import com.github.barteksc.pdfviewer.PDFView;
@@ -64,7 +65,7 @@ public class Admin extends AppCompatActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
     private Button logt;
 
-    private MaterialCardView mseeuser,mseedoc,mdocreport,musereport;
+    private MaterialCardView mseeuser,mseedoc,mdocreport,musereport, btnheadDo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +77,8 @@ public class Admin extends AppCompatActivity {
         mseedoc=findViewById(R.id.btnseedoctors);
         musereport=findViewById(R.id.btnusereport);
         mdocreport=findViewById(R.id.btndocreport);
+        btnheadDo = findViewById(R.id.btnheadDoc);
+
         logt=findViewById(R.id.btn_logout);
 
         mAuth = FirebaseAuth.getInstance();
@@ -110,6 +113,14 @@ public class Admin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Admin.this, UserReport.class);
+                startActivity(intent);
+            }
+        });
+
+        btnheadDo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Admin.this, ShowHeadDoc.class);
                 startActivity(intent);
             }
         });
