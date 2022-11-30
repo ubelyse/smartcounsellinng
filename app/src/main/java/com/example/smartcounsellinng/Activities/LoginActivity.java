@@ -231,7 +231,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                                 finish();
                                             }
 
-                                            else if (snapshot.child("doctors").child(uid).exists() && !snapshot.child("doctors").child("role").equals("Head Doctor")){
+                                            else if (snapshot.child("doctors").child(uid).exists()){
                                                 saveFile(email,password);
                                                 Intent intent3 = new Intent(LoginActivity.this, MainActivity.class);
                                                 String uid = firebaseAuth.getCurrentUser().getUid();
@@ -239,24 +239,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                                 bundle.putString("UID", uid);
                                                 intent3.putExtras(bundle);
                                                 overridePendingTransition(R.anim.animation_in,R.anim.animation_out);
-                                                intent3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                intent3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                                 startActivity(intent3);
                                                 finish();
-                                            }
 
-                                            else if (snapshot.child("doctors").child(uid).exists() && snapshot.child("doctors").child("role").equals("Head Doctor")){
-                                                saveFile(email,password);
-                                                Intent intent3 = new Intent(LoginActivity.this, MainHeadActivity.class);
-                                                String uid = firebaseAuth.getCurrentUser().getUid();
-                                                Bundle bundle = new Bundle();
-                                                bundle.putString("UID", uid);
-                                                intent3.putExtras(bundle);
-                                                overridePendingTransition(R.anim.animation_in,R.anim.animation_out);
-                                                intent3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                                        Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                startActivity(intent3);
-                                                finish();
                                             }
 
                                             else if(snapshot.child("admin").exists()){
