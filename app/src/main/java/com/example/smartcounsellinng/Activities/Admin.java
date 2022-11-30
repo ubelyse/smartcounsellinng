@@ -45,7 +45,7 @@ public class Admin extends AppCompatActivity {
         mseedoc=findViewById(R.id.btnseedoctors);
         musereport=findViewById(R.id.btnusereport);
         mdocreport=findViewById(R.id.btndocreport);
-//        btnheadDo = findViewById(R.id.btnheadDoc);
+        btnheadDo = findViewById(R.id.btnseeheaddoctors);
 
         logt=findViewById(R.id.btn_logout);
 
@@ -85,13 +85,13 @@ public class Admin extends AppCompatActivity {
             }
         });
 
-//        btnheadDo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent=new Intent(Admin.this, ShowHeadDoc.class);
-//                startActivity(intent);
-//            }
-//        });
+        btnheadDo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Admin.this, ShowHeadDoctors.class);
+                startActivity(intent);
+            }
+        });
 
 
         logt.setOnClickListener(new View.OnClickListener() {

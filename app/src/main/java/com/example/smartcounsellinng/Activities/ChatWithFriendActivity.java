@@ -197,6 +197,23 @@ public class ChatWithFriendActivity extends AppCompatActivity implements ValueEv
 
                 }
             });
+
+            nodeGetMyName = FirebaseDatabase.getInstance().getReference().child("head doctors").child(user.getUid());
+            nodeGetMyName.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Account doc = dataSnapshot.getValue(Account.class);
+                    if (doc != null) {
+                        myName = doc.getFullName();
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
         }
 
         nodeRefreshMessage = FirebaseDatabase.getInstance().getReference();
@@ -301,6 +318,66 @@ public class ChatWithFriendActivity extends AppCompatActivity implements ValueEv
 
                         }
                     });
+
+                    nodeGetMyName = FirebaseDatabase.getInstance().getReference().child("head doctors").child(user.getUid());
+                    nodeGetMyName.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            Account doc = dataSnapshot.getValue(Account.class);
+                            if (doc != null) {
+                                Intent iFriendFragment = new Intent(ChatWithFriendActivity.this, MainHeadActivity.class);
+                                Bundle bundle = new Bundle();
+                                if(iChat.getStringExtra("From").equals("Friend_Fragment")){
+                                    bundle.putInt("ReturnTab", 1);
+                                }
+                                else if (iChat.getStringExtra("From").equals("Message_Fragment")
+                                        || iChat.getStringExtra("From").equals("MoreInfoMessage")){
+                                    bundle.putInt("ReturnTab", 0);
+                                }
+                                bundle.putString("UID",FirebaseAuth.getInstance().getUid());
+                                iFriendFragment.putExtras(bundle);
+                                startActivity(iFriendFragment);
+                                mFirebaseAnalytics.logEvent("chat",bundle);
+                                finish();
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+                    nodeGetMyName = FirebaseDatabase.getInstance().getReference().child("head doctors").child(user.getUid());
+                    nodeGetMyName.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            Account doc = dataSnapshot.getValue(Account.class);
+                            if (doc != null) {
+                                Intent iFriendFragment = new Intent(ChatWithFriendActivity.this, MainHeadActivity.class);
+                                Bundle bundle = new Bundle();
+                                if(iChat.getStringExtra("From").equals("Friend_Fragment")){
+                                    bundle.putInt("ReturnTab", 1);
+                                }
+                                else if (iChat.getStringExtra("From").equals("Message_Fragment")
+                                        || iChat.getStringExtra("From").equals("MoreInfoMessage")){
+                                    bundle.putInt("ReturnTab", 0);
+                                }
+                                bundle.putString("UID",FirebaseAuth.getInstance().getUid());
+                                iFriendFragment.putExtras(bundle);
+                                startActivity(iFriendFragment);
+                                mFirebaseAnalytics.logEvent("chat",bundle);
+                                finish();
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
 
                 break;
@@ -313,7 +390,9 @@ public class ChatWithFriendActivity extends AppCompatActivity implements ValueEv
             case R.id.btnSendMessage:
                 String contentMessage = editTextMessage.getText().toString();
                 if(!contentMessage.isEmpty()){
+
                     pushMessage("text",contentMessage);
+
                     nodeGetMyName = FirebaseDatabase.getInstance().getReference().child("users").child(uidFriendChat).child("description");
                     nodeGetMyName.setValue("In Progress");
 

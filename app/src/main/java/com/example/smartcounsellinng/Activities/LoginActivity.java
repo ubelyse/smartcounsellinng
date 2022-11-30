@@ -148,19 +148,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                                 finish();
                                             }
 
-//                                            else if (snapshot.child("head doctors").child(uid).exists()){
-//                                                saveFile(email,password);
-//                                                Intent intent3 = new Intent(LoginActivity.this, HeadDoctorsAdmin.class);
-//                                                String uid = firebaseAuth.getCurrentUser().getUid();
-//                                                Bundle bundle = new Bundle();
-//                                                bundle.putString("UID", uid);
-//                                                intent3.putExtras(bundle);
-//                                                overridePendingTransition(R.anim.animation_in,R.anim.animation_out);
-//                                                intent3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |
-//                                                        Intent.FLAG_ACTIVITY_NEW_TASK);
-//                                                startActivity(intent3);
-//                                                finish();
-//                                            }
+                                            else if (snapshot.child("head doctors").child(uid).exists()){
+                                                saveFile(email,password);
+                                                Intent intent3 = new Intent(LoginActivity.this, MainHeadActivity.class);
+                                                String uid = firebaseAuth.getCurrentUser().getUid();
+                                                Bundle bundle = new Bundle();
+                                                bundle.putString("UID", uid);
+                                                intent3.putExtras(bundle);
+                                                overridePendingTransition(R.anim.animation_in,R.anim.animation_out);
+                                                intent3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                startActivity(intent3);
+                                                finish();
+                                            }
 
                                             else if(snapshot.child("admin").exists()){
                                                 Intent intent4=new Intent(LoginActivity.this,Admin.class);
@@ -234,6 +234,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                             else if (snapshot.child("doctors").child(uid).exists()){
                                                 saveFile(email,password);
                                                 Intent intent3 = new Intent(LoginActivity.this, MainActivity.class);
+                                                String uid = firebaseAuth.getCurrentUser().getUid();
+                                                Bundle bundle = new Bundle();
+                                                bundle.putString("UID", uid);
+                                                intent3.putExtras(bundle);
+                                                overridePendingTransition(R.anim.animation_in,R.anim.animation_out);
+                                                intent3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                startActivity(intent3);
+                                                finish();
+
+                                            }
+
+                                            else if (snapshot.child("head doctors").child(uid).exists()){
+                                                saveFile(email,password);
+                                                Intent intent3 = new Intent(LoginActivity.this, MainHeadActivity.class);
                                                 String uid = firebaseAuth.getCurrentUser().getUid();
                                                 Bundle bundle = new Bundle();
                                                 bundle.putString("UID", uid);

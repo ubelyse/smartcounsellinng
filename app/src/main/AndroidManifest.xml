@@ -23,9 +23,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activities.MainHeadActivity"
+            android:name=".Activities.HeadDoctorRegister"
             android:screenOrientation="portrait"
             android:theme="@style/AllTheme"/>
+        <activity
+            android:name=".Activities.ShowHeadDoctors"/>
+        <activity
+            android:name=".Activities.MainHeadActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AllTheme" />
         <activity
             android:name=".Activities.ChatWithDoctorActivity"
             android:screenOrientation="portrait"

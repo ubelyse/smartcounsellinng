@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30dp"
-        android:text="Register Head Doctor Account"
+        android:text="Register Doctor Account"
         android:layout_centerHorizontal="true"
         android:textColor="@color/black"
         android:layout_marginTop="20dp"
@@ -102,6 +102,7 @@
         android:layout_marginTop="@dimen/margin_top_register_10dp"
         />
 
+
     <EditText
         android:id="@+id/editTextPhoneNumber"
         android:layout_below="@id/editTextAddress"
@@ -120,38 +121,9 @@
         android:layout_marginTop="@dimen/margin_top_register_10dp" />
 
 
-    <LinearLayout
-        android:id="@+id/editRole"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextPhoneNumber"
-        android:layout_marginTop="@dimen/margin_top_register_10dp"
-        android:orientation="horizontal">
-
-        <CheckBox
-            android:id="@+id/checkbox_doctor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:text="Addict Doctor"
-            android:textColor="@color/black" />
-
-        <CheckBox
-            android:id="@+id/checkbox_psychologist"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:text="Psychologist"
-            android:textColor="@color/black" />
-
-
-    </LinearLayout>
-
     <EditText
         android:id="@+id/editTextDateOfBirth"
-        android:layout_below="@+id/editRole"
+        android:layout_below="@+id/editTextPhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"

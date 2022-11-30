@@ -197,6 +197,23 @@ public class ChatWithDoctorActivity extends AppCompatActivity implements ValueEv
 
                 }
             });
+
+            nodeGetMyName = FirebaseDatabase.getInstance().getReference().child("head doctors").child(user.getUid());
+            nodeGetMyName.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Account doc = dataSnapshot.getValue(Account.class);
+                    if (doc != null) {
+                        myName = doc.getFullName();
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
         }
 
         nodeRefreshMessage = FirebaseDatabase.getInstance().getReference();
@@ -279,6 +296,36 @@ public class ChatWithDoctorActivity extends AppCompatActivity implements ValueEv
                             Account doc = dataSnapshot.getValue(Account.class);
                             if (doc != null) {
                                 Intent iFriendFragment = new Intent(ChatWithDoctorActivity.this, MainActivity.class);
+                                Bundle bundle = new Bundle();
+                                if(iChat.getStringExtra("From").equals("Friend_Fragment")){
+                                    bundle.putInt("ReturnTab", 1);
+                                }
+                                else if (iChat.getStringExtra("From").equals("Message_Fragment")
+                                        || iChat.getStringExtra("From").equals("MoreInfoMessage")){
+                                    bundle.putInt("ReturnTab", 0);
+                                }
+                                bundle.putString("UID",FirebaseAuth.getInstance().getUid());
+                                iFriendFragment.putExtras(bundle);
+                                startActivity(iFriendFragment);
+                                mFirebaseAnalytics.logEvent("chat",bundle);
+                                finish();
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+                    nodeGetMyName = FirebaseDatabase.getInstance().getReference().child("head doctors").child(user.getUid());
+                    nodeGetMyName.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            Account doc = dataSnapshot.getValue(Account.class);
+                            if (doc != null) {
+                                Intent iFriendFragment = new Intent(ChatWithDoctorActivity.this, MainHeadActivity.class);
                                 Bundle bundle = new Bundle();
                                 if(iChat.getStringExtra("From").equals("Friend_Fragment")){
                                     bundle.putInt("ReturnTab", 1);

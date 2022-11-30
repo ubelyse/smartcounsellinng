@@ -81,11 +81,11 @@ public class FriendsPatientFragment extends Fragment{
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 hashMapFriends.clear();
-                DataSnapshot nodeDoc = dataSnapshot.child("doctors");
+                DataSnapshot nodeDoc = dataSnapshot.child("head doctors");
                 for (DataSnapshot snapshot : nodeDoc.getChildren()) {
                     if (!snapshot.getKey().equals(FirebaseAuth.getInstance().getUid())) {
                         Doctor account = snapshot.getValue(Doctor.class);
-                        if (!hashMapFriends.containsValue(account) & account.getRole().equals("Head Doctor")) { // check your friends list without friends
+                        if (!hashMapFriends.containsValue(account)) { // check your friends list without friends
                             hashMapFriends.put(snapshot.getKey(), account);
                         }
                     }

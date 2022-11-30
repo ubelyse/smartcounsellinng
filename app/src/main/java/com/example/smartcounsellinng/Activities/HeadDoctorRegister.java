@@ -30,7 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
-public class DoctorRegister extends AppCompatActivity implements View.OnFocusChangeListener {
+public class HeadDoctorRegister extends AppCompatActivity implements View.OnFocusChangeListener {
 
     private EditText txtUserName, txtPassWord,txtRePassWord,txtFullName,txtAddress,txtPhoneNumber,txtDateofBirth;
     private CheckBox txtRole,txtRole1,txtRole2;
@@ -45,7 +45,7 @@ public class DoctorRegister extends AppCompatActivity implements View.OnFocusCha
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_doctor_register);
+        setContentView(R.layout.activity_head_doctor_register);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -58,8 +58,8 @@ public class DoctorRegister extends AppCompatActivity implements View.OnFocusCha
         txtFullName = findViewById(R.id.editTextFullName);
         txtAddress = findViewById(R.id.editTextAddress);
         txtPhoneNumber = findViewById(R.id.editTextPhoneNumber);
-        txtRole = findViewById(R.id.checkbox_doctor);
-        txtRole1=findViewById(R.id.checkbox_psychologist);
+//        txtRole = findViewById(R.id.checkbox_doctor);
+//        txtRole1=findViewById(R.id.checkbox_psychologist);
 //        txtRole2 = findViewById(R.id.checkbox_headdoc);
         txtDateofBirth = findViewById(R.id.editTextDateOfBirth);
         txtDateofBirth.setOnFocusChangeListener(this);
@@ -68,34 +68,45 @@ public class DoctorRegister extends AppCompatActivity implements View.OnFocusCha
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent iLogin = new Intent(DoctorRegister.this, Admin.class);
+                Intent iLogin = new Intent(HeadDoctorRegister.this, Admin.class);
                 startActivity(iLogin);
                 finish();
             }
         });
 
-        txtRole.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (buttonView.isChecked()){
-                    txtRole1.setChecked(false);
+//        txtRole.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (buttonView.isChecked()){
+//                    txtRole1.setChecked(false);
 //                    txtRole2.setChecked(false);
-
-                }
-            }
-        });
-
-        txtRole1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (buttonView.isChecked()){
-                    txtRole.setChecked(false);
+//
+//                }
+//            }
+//        });
+//
+//        txtRole1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (buttonView.isChecked()){
+//                    txtRole.setChecked(false);
 //                    txtRole2.setChecked(false);
-
-                }
-            }
-        });
-
+//
+//                }
+//            }
+//        });
+//
+//        txtRole2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (buttonView.isChecked()){
+//                    txtRole.setChecked(false);
+//                    txtRole1.setChecked(false);
+//
+//
+//                }
+//            }
+//        });
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,12 +118,12 @@ public class DoctorRegister extends AppCompatActivity implements View.OnFocusCha
                 final String fullname = "Dr "+ txtFullName.getText().toString().trim();
                 final String address = txtAddress.getText().toString().trim();
                 final String phonenumber = txtPhoneNumber.getText().toString().trim();
-                final String[] role = {""};
+//                final String role = tx
 
-                if (!(txtRole.isChecked()||txtRole1.isChecked())){
-                    Toast.makeText(DoctorRegister.this, "Select The Account type", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+//                if (!(txtRole.isChecked()||txtRole1.isChecked()||txtRole2.isChecked())){
+//                    Toast.makeText(HeadDoctorRegister.this, "Select The Account type", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
 
                 date = new Date();
                 //
@@ -166,24 +177,27 @@ public class DoctorRegister extends AppCompatActivity implements View.OnFocusCha
 
 
                                 if (!task.isSuccessful()) {
-                                    Toast.makeText(DoctorRegister.this, "Registration error, please check again. Each email only registered 1 time only!",
+                                    Toast.makeText(HeadDoctorRegister.this, "Registration error, please check again. Each email only registered 1 time only!",
                                             Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(DoctorRegister.this, "Registration is complete!",
+                                    Toast.makeText(HeadDoctorRegister.this, "Registration is complete!",
                                             Toast.LENGTH_SHORT).show();
-                                    if (txtRole.isChecked()){
-                                        role[0] ="Addict Doctor";
-                                    }
-                                    else if(txtRole1.isChecked()){
-                                        role[0] ="Psychologist";
-                                    }
+//                                    if (txtRole.isChecked()){
+//                                        role[0] ="Addict Doctor";
+//                                    }
+//                                    else if(txtRole1.isChecked()){
+//                                        role[0] ="Psychologist";
+//                                    }
+//                                    else if(txtRole2.isChecked()){
+//                                        role[0] ="Head Doctor";
+//                                    }
 
 
 
-                                    Doctor account = new Doctor(email, phonenumber, address, dateOfBirth, "", role[0], fullname);
+                                    Doctor account = new Doctor(email, phonenumber, address, dateOfBirth, "", "Head Doctor", fullname);
                                     String uid = firebaseAuth.getCurrentUser().getUid();
-                                    databaseReference.child("doctors").child(uid).setValue(account);
-                                    startActivity(new Intent(DoctorRegister.this, Admin.class));
+                                    databaseReference.child("head doctors").child(uid).setValue(account);
+                                    startActivity(new Intent(HeadDoctorRegister.this, Admin.class));
                                     finish();
                                 }
                             }
