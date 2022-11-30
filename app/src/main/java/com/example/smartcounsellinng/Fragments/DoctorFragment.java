@@ -31,7 +31,6 @@ import com.example.smartcounsellinng.Models.Account;
 import com.example.smartcounsellinng.Models.AccountRequest;
 import com.example.smartcounsellinng.Models.Doctor;
 import com.example.smartcounsellinng.Models.FriendRequest;
-import com.example.smartcounsellinng.Models.RecentlyChat;
 import com.example.smartcounsellinng.Models.User;
 import com.example.smartcounsellinng.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -48,7 +47,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class FriendsFragment extends Fragment{
+public class DoctorFragment extends Fragment{
 
     private Toolbar toolbar;
     private ImageView btnAddFriend;
@@ -62,7 +61,7 @@ public class FriendsFragment extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_friends, container, false);
+        View v = inflater.inflate(R.layout.fragment_doctor, container, false);
 
         toolbar = v.findViewById(R.id.toolBarSearch);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
@@ -79,12 +78,11 @@ public class FriendsFragment extends Fragment{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 AccountRequest fr = (AccountRequest) parent.getAdapter().getItem(position);
-                Intent iChat = new Intent(getActivity(), ChatWithFriendActivity.class);
+                Intent iChat = new Intent(getActivity(), ChatWithDoctorActivity.class);
                 iChat.putExtra("UID_Friend", fr.getUid());
                 iChat.putExtra("Name_Friend", fr.getFullName());
                 iChat.putExtra("From", "Friend_Fragment");
                 startActivity(iChat);
-
 
             }
         });
@@ -94,11 +92,11 @@ public class FriendsFragment extends Fragment{
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 hashMapFriends.clear();
-                DataSnapshot nodeDoc = dataSnapshot.child("users");
+                DataSnapshot nodeDoc = dataSnapshot.child("doctors");
                 for (DataSnapshot snapshot : nodeDoc.getChildren()) {
                     if (!snapshot.getKey().equals(FirebaseAuth.getInstance().getUid())) {
                         Account account = snapshot.getValue(Account.class);
-                        if (!hashMapFriends.containsValue(account) && account.getDescription().equals("New")) { // check your friends list without friends
+                        if (!hashMapFriends.containsValue(account)) { // check your friends list without friends
                             hashMapFriends.put(snapshot.getKey(), account);
                         }
                     }
@@ -106,8 +104,9 @@ public class FriendsFragment extends Fragment{
 
                 listFriendAdapter.notifyDataSetChanged();
 
-                // If there is notice of making friends or adding new friends, the effect list
             }
+
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

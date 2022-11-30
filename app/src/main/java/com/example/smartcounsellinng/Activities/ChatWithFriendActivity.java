@@ -314,7 +314,7 @@ public class ChatWithFriendActivity extends AppCompatActivity implements ValueEv
                 String contentMessage = editTextMessage.getText().toString();
                 if(!contentMessage.isEmpty()){
                     pushMessage("text",contentMessage);
-                    nodeGetMyName = FirebaseDatabase.getInstance().getReference().child("users").child(uidFriendChat).child("status");
+                    nodeGetMyName = FirebaseDatabase.getInstance().getReference().child("users").child(uidFriendChat).child("description");
                     nodeGetMyName.setValue("In Progress");
 
                 }

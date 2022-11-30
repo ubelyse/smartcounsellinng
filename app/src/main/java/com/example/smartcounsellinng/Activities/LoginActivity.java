@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcounsellinng.MainActivity;
+import com.example.smartcounsellinng.Models.Doctor;
 import com.example.smartcounsellinng.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -44,6 +45,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     EditText txtUserName, txtPassWord;
     FirebaseAuth firebaseAuth;
     TextView btnSwitchForgetPassWord;
+    Doctor doctor;
     String email,password;
     DatabaseReference databaseReference;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -61,6 +63,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mFirebaseAnalytics=FirebaseAnalytics.getInstance(this);
         btnSwitchRegister = (Button)findViewById(R.id.buttonSwitchRegister);
         btnSwitchRegister.setOnClickListener(this);
+        doctor = new Doctor();
         btnSwitchForgetPassWord = (TextView) findViewById(R.id.forgot_password);
         btnSwitchForgetPassWord.setOnClickListener(new View.OnClickListener()
         {
@@ -227,33 +230,34 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                                 startActivity(intent);
                                                 finish();
                                             }
-                                            else if (snapshot.child("doctors").child(uid).exists()){
+
+                                            else if (snapshot.child("doctors").child(uid).exists() && !snapshot.child("doctors").child("role").equals("Head Doctor")){
                                                 saveFile(email,password);
-                                                Intent intent2 = new Intent(LoginActivity.this, MainActivity.class);
+                                                Intent intent3 = new Intent(LoginActivity.this, MainActivity.class);
                                                 String uid = firebaseAuth.getCurrentUser().getUid();
                                                 Bundle bundle = new Bundle();
                                                 bundle.putString("UID", uid);
-                                                intent2.putExtras(bundle);
+                                                intent3.putExtras(bundle);
                                                 overridePendingTransition(R.anim.animation_in,R.anim.animation_out);
-                                                intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                                intent3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                                         Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                startActivity(intent2);
+                                                startActivity(intent3);
                                                 finish();
                                             }
 
-//                                            else if (snapshot.child("head doctors").child(uid).exists()){
-//                                                saveFile(email,password);
-//                                                Intent intent3 = new Intent(LoginActivity.this, HeadDoctorsAdmin.class);
-//                                                String uid = firebaseAuth.getCurrentUser().getUid();
-//                                                Bundle bundle = new Bundle();
-//                                                bundle.putString("UID", uid);
-//                                                intent3.putExtras(bundle);
-//                                                overridePendingTransition(R.anim.animation_in,R.anim.animation_out);
-//                                                intent3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |
-//                                                        Intent.FLAG_ACTIVITY_NEW_TASK);
-//                                                startActivity(intent3);
-//                                                finish();
-//                                            }
+                                            else if (snapshot.child("doctors").child(uid).exists() && snapshot.child("doctors").child("role").equals("Head Doctor")){
+                                                saveFile(email,password);
+                                                Intent intent3 = new Intent(LoginActivity.this, MainHeadActivity.class);
+                                                String uid = firebaseAuth.getCurrentUser().getUid();
+                                                Bundle bundle = new Bundle();
+                                                bundle.putString("UID", uid);
+                                                intent3.putExtras(bundle);
+                                                overridePendingTransition(R.anim.animation_in,R.anim.animation_out);
+                                                intent3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                startActivity(intent3);
+                                                finish();
+                                            }
 
                                             else if(snapshot.child("admin").exists()){
                                                 Intent intent4=new Intent(LoginActivity.this,Admin.class);
