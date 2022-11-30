@@ -126,36 +126,44 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                                 bundle.putString("UID", uid);
                                                 intent.putExtras(bundle);
                                                 overridePendingTransition(R.anim.animation_in,R.anim.animation_out);
+                                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                                        Intent.FLAG_ACTIVITY_NEW_TASK);
                                                 startActivity(intent);
                                                 finish();
                                             }
                                             else if (snapshot.child("doctors").child(uid).exists()){
                                                 saveFile(email,password);
-                                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                                Intent intent2 = new Intent(LoginActivity.this, MainActivity.class);
                                                 String uid = firebaseAuth.getCurrentUser().getUid();
                                                 Bundle bundle = new Bundle();
                                                 bundle.putString("UID", uid);
-                                                intent.putExtras(bundle);
+                                                intent2.putExtras(bundle);
                                                 overridePendingTransition(R.anim.animation_in,R.anim.animation_out);
-                                                startActivity(intent);
+                                                intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                startActivity(intent2);
                                                 finish();
                                             }
 
-                                            else if (snapshot.child("head doctors").child(uid).exists()){
-                                                saveFile(email,password);
-                                                Intent intent = new Intent(LoginActivity.this, HeadDoctorsAdmin.class);
-                                                String uid = firebaseAuth.getCurrentUser().getUid();
-                                                Bundle bundle = new Bundle();
-                                                bundle.putString("UID", uid);
-                                                intent.putExtras(bundle);
-                                                overridePendingTransition(R.anim.animation_in,R.anim.animation_out);
-                                                startActivity(intent);
-                                                finish();
-                                            }
+//                                            else if (snapshot.child("head doctors").child(uid).exists()){
+//                                                saveFile(email,password);
+//                                                Intent intent3 = new Intent(LoginActivity.this, HeadDoctorsAdmin.class);
+//                                                String uid = firebaseAuth.getCurrentUser().getUid();
+//                                                Bundle bundle = new Bundle();
+//                                                bundle.putString("UID", uid);
+//                                                intent3.putExtras(bundle);
+//                                                overridePendingTransition(R.anim.animation_in,R.anim.animation_out);
+//                                                intent3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |
+//                                                        Intent.FLAG_ACTIVITY_NEW_TASK);
+//                                                startActivity(intent3);
+//                                                finish();
+//                                            }
 
                                             else if(snapshot.child("admin").exists()){
-                                                Intent intent=new Intent(LoginActivity.this,Admin.class);
-                                                startActivity(intent);
+                                                Intent intent4=new Intent(LoginActivity.this,Admin.class);
+                                                intent4.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                startActivity(intent4);
                                             }
                                         }
 
@@ -214,36 +222,42 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                                 bundle.putString("UID", uid);
                                                 intent.putExtras(bundle);
                                                 overridePendingTransition(R.anim.animation_in,R.anim.animation_out);
+                                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                                        Intent.FLAG_ACTIVITY_NEW_TASK);
                                                 startActivity(intent);
                                                 finish();
                                             }
                                             else if (snapshot.child("doctors").child(uid).exists()){
                                                 saveFile(email,password);
-                                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                                Intent intent2 = new Intent(LoginActivity.this, MainActivity.class);
                                                 String uid = firebaseAuth.getCurrentUser().getUid();
                                                 Bundle bundle = new Bundle();
                                                 bundle.putString("UID", uid);
-                                                intent.putExtras(bundle);
+                                                intent2.putExtras(bundle);
                                                 overridePendingTransition(R.anim.animation_in,R.anim.animation_out);
-                                                startActivity(intent);
+                                                intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                startActivity(intent2);
                                                 finish();
                                             }
 
-                                            else if (snapshot.child("head doctors").child(uid).exists()){
-                                                saveFile(email,password);
-                                                Intent intent = new Intent(LoginActivity.this, HeadDoctorsAdmin.class);
-                                                String uid = firebaseAuth.getCurrentUser().getUid();
-                                                Bundle bundle = new Bundle();
-                                                bundle.putString("UID", uid);
-                                                intent.putExtras(bundle);
-                                                overridePendingTransition(R.anim.animation_in,R.anim.animation_out);
-                                                startActivity(intent);
-                                                finish();
-                                            }
+//                                            else if (snapshot.child("head doctors").child(uid).exists()){
+//                                                saveFile(email,password);
+//                                                Intent intent3 = new Intent(LoginActivity.this, HeadDoctorsAdmin.class);
+//                                                String uid = firebaseAuth.getCurrentUser().getUid();
+//                                                Bundle bundle = new Bundle();
+//                                                bundle.putString("UID", uid);
+//                                                intent3.putExtras(bundle);
+//                                                overridePendingTransition(R.anim.animation_in,R.anim.animation_out);
+//                                                intent3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |
+//                                                        Intent.FLAG_ACTIVITY_NEW_TASK);
+//                                                startActivity(intent3);
+//                                                finish();
+//                                            }
 
                                             else if(snapshot.child("admin").exists()){
-                                                Intent intent=new Intent(LoginActivity.this,Admin.class);
-                                                startActivity(intent);
+                                                Intent intent4=new Intent(LoginActivity.this,Admin.class);
+                                                startActivity(intent4);
                                             }
                                         }
 

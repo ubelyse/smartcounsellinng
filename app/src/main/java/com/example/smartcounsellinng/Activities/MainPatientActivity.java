@@ -16,6 +16,7 @@ import com.example.smartcounsellinng.Adapters.ViewPagerAdapter;
 import com.example.smartcounsellinng.Fragments.FriendsFragment;
 import com.example.smartcounsellinng.Fragments.FriendsPatientFragment;
 import com.example.smartcounsellinng.Fragments.MessagesFragment;
+import com.example.smartcounsellinng.Fragments.MessagesPatientFragment;
 import com.example.smartcounsellinng.Fragments.PersonalFragment;
 import com.example.smartcounsellinng.Fragments.SettingsFragment;
 import com.example.smartcounsellinng.R;
@@ -85,7 +86,7 @@ public class MainPatientActivity extends AppCompatActivity implements TabHost.On
         PersonalFragment personalFragment = new PersonalFragment();
         personalFragment.setArguments(info); // info la thang bundle gui qua personal
 
-        fragments.add(new MessagesFragment());
+        fragments.add(new MessagesPatientFragment());
         fragments.add(new FriendsPatientFragment());
         fragments.add(personalFragment);
         fragments.add(new SettingsFragment());

@@ -130,7 +130,7 @@
 
         <CheckBox
             android:id="@+id/checkbox_doctor"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
@@ -139,11 +139,20 @@
 
         <CheckBox
             android:id="@+id/checkbox_psychologist"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:text="Psychologist"
+            android:textColor="@color/black" />
+
+        <CheckBox
+            android:id="@+id/checkbox_headdoc"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="Head Doctor"
             android:textColor="@color/black" />
 
     </LinearLayout>

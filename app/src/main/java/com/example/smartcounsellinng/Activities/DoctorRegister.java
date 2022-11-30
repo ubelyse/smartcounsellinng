@@ -60,6 +60,7 @@ public class DoctorRegister extends AppCompatActivity implements View.OnFocusCha
         txtPhoneNumber = findViewById(R.id.editTextPhoneNumber);
         txtRole = findViewById(R.id.checkbox_doctor);
         txtRole1=findViewById(R.id.checkbox_psychologist);
+        txtRole2 = findViewById(R.id.checkbox_headdoc);
         txtDateofBirth = findViewById(R.id.editTextDateOfBirth);
         txtDateofBirth.setOnFocusChangeListener(this);
 
@@ -78,6 +79,7 @@ public class DoctorRegister extends AppCompatActivity implements View.OnFocusCha
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (buttonView.isChecked()){
                     txtRole1.setChecked(false);
+                    txtRole2.setChecked(false);
 
                 }
             }
@@ -88,6 +90,18 @@ public class DoctorRegister extends AppCompatActivity implements View.OnFocusCha
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (buttonView.isChecked()){
                     txtRole.setChecked(false);
+                    txtRole2.setChecked(false);
+
+                }
+            }
+        });
+
+        txtRole2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (buttonView.isChecked()){
+                    txtRole.setChecked(false);
+                    txtRole1.setChecked(false);
 
                 }
             }
@@ -100,7 +114,7 @@ public class DoctorRegister extends AppCompatActivity implements View.OnFocusCha
                 final String email = txtUserName.getText().toString().trim();
                 final String password = txtPassWord.getText().toString().trim();
                 final String repassword = txtRePassWord.getText().toString().trim();
-                final String fullname = txtFullName.getText().toString().trim();
+                final String fullname = "Dr"+ txtFullName.getText().toString().trim();
                 final String address = txtAddress.getText().toString().trim();
                 final String phonenumber = txtPhoneNumber.getText().toString().trim();
                 final String[] role = {""};
@@ -168,11 +182,15 @@ public class DoctorRegister extends AppCompatActivity implements View.OnFocusCha
                                     Toast.makeText(DoctorRegister.this, "Registration is complete!",
                                             Toast.LENGTH_SHORT).show();
                                     if (txtRole.isChecked()){
-                                        role[0] ="Doctor";
+                                        role[0] ="Addict Doctor";
                                     }
                                     else if(txtRole1.isChecked()){
                                         role[0] ="Psychologist";
                                     }
+                                    else if(txtRole2.isChecked()){
+                                        role[0] ="Head Doctor";
+                                    }
+
 
 
                                     Doctor account = new Doctor(email, phonenumber, address, dateOfBirth, "", role[0], fullname);

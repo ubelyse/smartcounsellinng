@@ -25,7 +25,7 @@
                 android:id="@+id/editTextSearchRecentlyChat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Message"
+                android:hint="@string/search_friend_message"
                 android:textColorHint="@color/white"
                 android:textSize="18sp"
                 android:layout_marginRight="50dp"

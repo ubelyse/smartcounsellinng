@@ -1,7 +1,6 @@
 package com.example.smartcounsellinng;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.View;
@@ -14,14 +13,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.smartcounsellinng.Adapters.ViewPagerAdapter;
 import com.example.smartcounsellinng.Fragments.FriendsFragment;
-import com.example.smartcounsellinng.Fragments.MessagesDoctorFragment;
 import com.example.smartcounsellinng.Fragments.MessagesFragment;
 import com.example.smartcounsellinng.Fragments.PersonalFragment;
 import com.example.smartcounsellinng.Fragments.SettingsFragment;
-import com.example.smartcounsellinng.R;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 import java.util.Vector;
@@ -85,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements TabHost.OnTabChan
         PersonalFragment personalFragment = new PersonalFragment();
         personalFragment.setArguments(info); // info la thang bundle gui qua personal
 
-        fragments.add(new MessagesDoctorFragment());
+        fragments.add(new MessagesFragment());
         fragments.add(new FriendsFragment());
         fragments.add(personalFragment);
         fragments.add(new SettingsFragment());

@@ -16,7 +16,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.smartcounsellinng.Activities.ChatWithFriendActivity;
 import com.example.smartcounsellinng.Adapters.ListRecentlyChatAdapter;
-import com.example.smartcounsellinng.ChatWithHeadDoctorActivity;
 import com.example.smartcounsellinng.Models.RecentlyChat;
 import com.example.smartcounsellinng.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -55,7 +54,7 @@ public class MessagesFragment extends Fragment implements ChildEventListener {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 RecentlyChat recentlyChat = (RecentlyChat)parent.getAdapter().getItem(position);
-                Intent iChat = new Intent(getActivity(), ChatWithHeadDoctorActivity.class);
+                Intent iChat = new Intent(getActivity(), ChatWithFriendActivity.class);
                 iChat.putExtra("UID_Friend",recentlyChat.getUidRecentlyChat());
                 iChat.putExtra("Name_Friend",recentlyChat.getNameRecentlychat());
                 iChat.putExtra("From","Message_Fragment");

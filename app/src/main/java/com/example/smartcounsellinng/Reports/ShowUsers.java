@@ -32,7 +32,7 @@ public class ShowUsers extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_users);
 
-        setTitle("Search here...");
+//        setTitle("Search here...");
 
         recview=(RecyclerView)findViewById(R.id.recycleview);
         recview.setLayoutManager(new LinearLayoutManager(this));
@@ -66,44 +66,44 @@ public class ShowUsers extends AppCompatActivity {
         adapter.stopListening();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        getMenuInflater().inflate(R.menu.searchmenu,menu);
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu)
+//    {
+//        getMenuInflater().inflate(R.menu.searchmenu,menu);
+//
+//        MenuItem item=menu.findItem(R.id.search);
+//
+//        android.widget.SearchView searchView=(android.widget.SearchView)item.getActionView();
+//
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
+//        {
+//            @Override
+//            public boolean onQueryTextSubmit(String s) {
+//
+//                processsearch(s);
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String s) {
+//                processsearch(s);
+//                return false;
+//            }
+//        });
+//
+//        return super.onCreateOptionsMenu(menu);
+//    }
 
-        MenuItem item=menu.findItem(R.id.search);
-
-        android.widget.SearchView searchView=(android.widget.SearchView)item.getActionView();
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
-        {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-
-                processsearch(s);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                processsearch(s);
-                return false;
-            }
-        });
-
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    private void processsearch(String s)
-    {
-        FirebaseRecyclerOptions<User> options =
-                new FirebaseRecyclerOptions.Builder<User>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("users").orderByChild("fullName").startAt(s).endAt(s+"\uf8ff"), User.class)
-                        .build();
-
-        adapter=new Useradapter(options);
-        adapter.startListening();
-        recview.setAdapter(adapter);
-
-    }
+//    private void processsearch(String s)
+//    {
+//        FirebaseRecyclerOptions<User> options =
+//                new FirebaseRecyclerOptions.Builder<User>()
+//                        .setQuery(FirebaseDatabase.getInstance().getReference().child("users").orderByChild("fullName").startAt(s).endAt(s+"\uf8ff"), User.class)
+//                        .build();
+//
+//        adapter=new Useradapter(options);
+//        adapter.startListening();
+//        recview.setAdapter(adapter);
+//
+//    }
 }

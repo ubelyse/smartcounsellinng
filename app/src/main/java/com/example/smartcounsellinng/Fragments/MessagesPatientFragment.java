@@ -14,9 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.smartcounsellinng.Activities.ChatWithDoctorActivity;
 import com.example.smartcounsellinng.Activities.ChatWithFriendActivity;
 import com.example.smartcounsellinng.Adapters.ListRecentlyChatAdapter;
-import com.example.smartcounsellinng.ChatWithHeadDoctorActivity;
 import com.example.smartcounsellinng.Models.RecentlyChat;
 import com.example.smartcounsellinng.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,7 +34,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class MessagesDoctorFragment extends Fragment implements ChildEventListener {
+public class MessagesPatientFragment extends Fragment implements ChildEventListener {
 
     private DatabaseReference nodeRoot;
 
@@ -47,7 +47,7 @@ public class MessagesDoctorFragment extends Fragment implements ChildEventListen
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_messages_doctor, container, false);
+        View v = inflater.inflate(R.layout.fragment_messages, container, false);
 
         recentlyChatList = new ArrayList<>();
         listviewRecentlyChat = (ListView)v.findViewById(R.id.listViewRecentlyChat);
@@ -55,7 +55,7 @@ public class MessagesDoctorFragment extends Fragment implements ChildEventListen
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 RecentlyChat recentlyChat = (RecentlyChat)parent.getAdapter().getItem(position);
-                Intent iChat = new Intent(getActivity(), ChatWithHeadDoctorActivity.class);
+                Intent iChat = new Intent(getActivity(), ChatWithDoctorActivity.class);
                 iChat.putExtra("UID_Friend",recentlyChat.getUidRecentlyChat());
                 iChat.putExtra("Name_Friend",recentlyChat.getNameRecentlychat());
                 iChat.putExtra("From","Message_Fragment");

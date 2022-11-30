@@ -24,13 +24,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.smartcounsellinng.Activities.Admin;
+import com.example.smartcounsellinng.Activities.ChatWithDoctorActivity;
 import com.example.smartcounsellinng.Activities.ChatWithFriendActivity;
-import com.example.smartcounsellinng.Activities.LoginActivity;
 import com.example.smartcounsellinng.Adapters.ListFriendAdapter;
-import com.example.smartcounsellinng.MainActivity;
 import com.example.smartcounsellinng.Models.Account;
 import com.example.smartcounsellinng.Models.AccountRequest;
+import com.example.smartcounsellinng.Models.Doctor;
+import com.example.smartcounsellinng.Models.FriendRequest;
+import com.example.smartcounsellinng.Models.User;
 import com.example.smartcounsellinng.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -54,6 +55,7 @@ public class FriendsFragment extends Fragment{
 
     private HashMap<String,Account> hashMapFriends;
     private ListFriendAdapter listFriendAdapter;
+    private DatabaseReference nodeRefreshMessage, nodeMessage, nodeInfoMine, nodeInfoFriend, nodeGetMyName,nodeGetName;
 
     private DatabaseReference nodeRoot;
 
@@ -75,53 +77,42 @@ public class FriendsFragment extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                FirebaseAuth firebaseAuth;
-                firebaseAuth = FirebaseAuth.getInstance();
-                String uid = firebaseAuth.getCurrentUser().getUid();
 
-                DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
-                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.child("users").child(uid).exists()){
-                            AccountRequest fr = (AccountRequest)parent.getAdapter().getItem(position);
-                            listViewFriend.setAdapter(listFriendAdapter);
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user != null) {
+                    nodeGetName = FirebaseDatabase.getInstance().getReference().child("doctors").child(user.getUid());
+                    nodeGetName.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            Doctor doc = dataSnapshot.getValue(Doctor.class);
+                            if (doc.getRole().equals("Head Doctor")) {
+                                AccountRequest fr = (AccountRequest) parent.getAdapter().getItem(position);
+                                Intent iChat = new Intent(getActivity(), ChatWithDoctorActivity.class);
+                                iChat.putExtra("UID_Friend", fr.getUid());
+                                iChat.putExtra("Name_Friend", fr.getFullName());
+                                iChat.putExtra("From", "Friend_Fragment");
+                                startActivity(iChat);
+                            }
+
+                            else{
+                                AccountRequest fr = (AccountRequest) parent.getAdapter().getItem(position);
+                                Intent iChat = new Intent(getActivity(), ChatWithFriendActivity.class);
+                                iChat.putExtra("UID_Friend", fr.getUid());
+                                iChat.putExtra("Name_Friend", fr.getFullName());
+                                iChat.putExtra("From", "Friend_Fragment");
+                                startActivity(iChat);
+                            }
 
                         }
-                        else if (snapshot.child("doctors").child(uid).exists()){
-                            AccountRequest fr = (AccountRequest)parent.getAdapter().getItem(position);
-                            Intent iChat = new Intent(getActivity(), ChatWithFriendActivity.class);
-                            iChat.putExtra("UID_Friend",fr.getUid());
-                            iChat.putExtra("Name_Friend",fr.getFullName());
-                            iChat.putExtra("From","Friend_Fragment");
-                            startActivity(iChat);
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
                         }
+                    });
 
-                        else if (snapshot.child("head doctors").child(uid).exists()){
-                            AccountRequest fr = (AccountRequest)parent.getAdapter().getItem(position);
-                            Intent iChat = new Intent(getActivity(), ChatWithFriendActivity.class);
-                            iChat.putExtra("UID_Friend",fr.getUid());
-                            iChat.putExtra("Name_Friend",fr.getFullName());
-                            iChat.putExtra("From","Friend_Fragment");
-                            startActivity(iChat);
-                        }
+                }
 
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-
-
-//                AccountRequest fr = (AccountRequest)parent.getAdapter().getItem(position);
-//                Intent iChat = new Intent(getActivity(), ChatWithFriendActivity.class);
-//                iChat.putExtra("UID_Friend",fr.getUid());
-//                iChat.putExtra("Name_Friend",fr.getFullName());
-//                iChat.putExtra("From","Friend_Fragment");
-//                startActivity(iChat);
             }
         });
 
@@ -130,20 +121,43 @@ public class FriendsFragment extends Fragment{
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 hashMapFriends.clear();
-                DataSnapshot nodeDoc = dataSnapshot.child("users");
+                DataSnapshot nodeDoc = dataSnapshot.child("doctors");
+                DataSnapshot nodeUser = dataSnapshot.child("users");
                 for (DataSnapshot snapshot : nodeDoc.getChildren()) {
-                    if (!snapshot.getKey().equals(FirebaseAuth.getInstance().getUid())) {
+                    if (!snapshot.getKey().equals(FirebaseAuth.getInstance().getUid()) &&
+                            !snapshot.child(FirebaseAuth.getInstance().getUid()).child("role").equals("Head Doctor")) {
                         Account account = snapshot.getValue(Account.class);
-                        if (!hashMapFriends.containsValue(account) && account.getDescription().equals("New")) { // check your friends list without friends
+                        if (!hashMapFriends.containsValue(account)) { // check your friends list without friends
                             hashMapFriends.put(snapshot.getKey(), account);
                         }
+
+                        listFriendAdapter.notifyDataSetChanged();
+
                     }
                 }
 
-                listFriendAdapter.notifyDataSetChanged();
+                for (DataSnapshot snapshot : nodeDoc.getChildren()) {
+                    if (!snapshot.getKey().equals(FirebaseAuth.getInstance().getUid()))
+                        {
+                            for (DataSnapshot snapshot1 : nodeUser.getChildren()) {
+                                Account account = snapshot1.getValue(Account.class);
+                                if (!hashMapFriends.containsValue(account) && account.getDescription().equals("New"))
+
+                                { // check your friends list without friends
+                                    hashMapFriends.put(snapshot1.getKey(), account);
+                                }
+                            }
+
+                            listFriendAdapter.notifyDataSetChanged();
+                        }
+
+
+                }
 
                 // If there is notice of making friends or adding new friends, the effect list
             }
+
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

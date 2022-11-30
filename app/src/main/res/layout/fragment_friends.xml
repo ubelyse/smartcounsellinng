@@ -23,7 +23,7 @@
                 android:id="@+id/editTextSearchInListFriend"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Patient List"
+                android:hint="Users List"
                 android:textColorHint="@color/white"
                 android:textSize="18sp"
                 android:layout_marginRight="50dp"

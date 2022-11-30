@@ -23,26 +23,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Reports.ShowDoctorasHead" />
-
-        <activity
             android:name=".Activities.ChatWithDoctorActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AllTheme"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity
-            android:name=".ChatWithHeadDoctorActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AllTheme"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity
-            android:name=".Activities.HeadDoctorRegister"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity android:name=".Reports.ShowHeadDoc" />
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+
         <activity
             android:name=".Activities.MainPatientActivity"
             android:screenOrientation="portrait"
@@ -97,10 +82,6 @@
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AllTheme" />
-        <activity
-            android:name=".Activities.HeadDoctorsAdmin"
             android:screenOrientation="portrait"
             android:theme="@style/AllTheme" />
 

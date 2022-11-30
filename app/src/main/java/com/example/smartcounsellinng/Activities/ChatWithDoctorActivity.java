@@ -2,7 +2,6 @@ package com.example.smartcounsellinng.Activities;
 
 import android.app.Activity;
 import android.app.FragmentManager;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.MediaPlayer;
@@ -15,12 +14,14 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartcounsellinng.Adapters.RecyclerListMessageAdapter;
@@ -29,6 +30,7 @@ import com.example.smartcounsellinng.Fragments.AudioMessageFragment;
 import com.example.smartcounsellinng.Interfaces.GetAudioFromRecordFragment;
 import com.example.smartcounsellinng.MainActivity;
 import com.example.smartcounsellinng.Models.Account;
+import com.example.smartcounsellinng.Models.Doctor;
 import com.example.smartcounsellinng.Models.Message;
 import com.example.smartcounsellinng.Models.RecentlyChat;
 import com.example.smartcounsellinng.R;
@@ -50,8 +52,11 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Objects;
 import java.util.TimeZone;
 import java.util.UUID;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ChatWithDoctorActivity extends AppCompatActivity implements ValueEventListener,
         View.OnClickListener, GetAudioFromRecordFragment {
@@ -59,17 +64,11 @@ public class ChatWithDoctorActivity extends AppCompatActivity implements ValueEv
     private Intent iChat;
     private String uidFriendChat, nameFriendChat;
     private FirebaseAnalytics mFirebaseAnalytics;
-    private String uidFriend, nameFriend;
 
     private TextView textViewNameFriend;
     private ImageButton btnSendMessage, btnBackButton, btnSendImage, btnMoreInfo, btnSendAudio,btnSendImageWithCamera;
     private EditText editTextMessage;
     private RecyclerView recyclerViewMessage;
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
-
-    private DatabaseReference nodeRoot, nodeUsers, nodeStatus;
-    private ProgressDialog mAuthProgressDialog;
 
     private DatabaseReference nodeRefreshMessage, nodeMessage, nodeInfoMine, nodeInfoFriend, nodeGetMyName,nodeGetName;
     private String myName = "";
@@ -78,9 +77,6 @@ public class ChatWithDoctorActivity extends AppCompatActivity implements ValueEv
 
     private Uri filePath;
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-
-    Account account;
-
 
 
     @Override
@@ -244,20 +240,69 @@ public class ChatWithDoctorActivity extends AppCompatActivity implements ValueEv
                 break;
             case R.id.btnBackMessages:
 
-                Intent iFriendFragment = new Intent(ChatWithDoctorActivity.this, HeadDoctorsAdmin.class);
-                Bundle bundle = new Bundle();
-                if(iChat.getStringExtra("From").equals("Friend_Fragment")){
-                    bundle.putInt("ReturnTab", 1);
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user != null) {
+                    nodeGetName = FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid());
+                    nodeGetName.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            Account doc = dataSnapshot.getValue(Account.class);
+                            if (doc != null) {
+                                Intent iFriendFragment = new Intent(ChatWithDoctorActivity.this, MainPatientActivity.class);
+                                Bundle bundle = new Bundle();
+                                if(iChat.getStringExtra("From").equals("Friend_Fragment")){
+                                    bundle.putInt("ReturnTab", 1);
+                                }
+                                else if (iChat.getStringExtra("From").equals("Message_Fragment")
+                                        || iChat.getStringExtra("From").equals("MoreInfoMessage")){
+                                    bundle.putInt("ReturnTab", 0);
+                                }
+                                bundle.putString("UID",FirebaseAuth.getInstance().getUid());
+                                iFriendFragment.putExtras(bundle);
+                                startActivity(iFriendFragment);
+                                mFirebaseAnalytics.logEvent("chat",bundle);
+                                finish();
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+                    nodeGetMyName = FirebaseDatabase.getInstance().getReference().child("doctors").child(user.getUid());
+                    nodeGetMyName.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            Account doc = dataSnapshot.getValue(Account.class);
+                            if (doc != null) {
+                                Intent iFriendFragment = new Intent(ChatWithDoctorActivity.this, MainActivity.class);
+                                Bundle bundle = new Bundle();
+                                if(iChat.getStringExtra("From").equals("Friend_Fragment")){
+                                    bundle.putInt("ReturnTab", 1);
+                                }
+                                else if (iChat.getStringExtra("From").equals("Message_Fragment")
+                                        || iChat.getStringExtra("From").equals("MoreInfoMessage")){
+                                    bundle.putInt("ReturnTab", 0);
+                                }
+                                bundle.putString("UID",FirebaseAuth.getInstance().getUid());
+                                iFriendFragment.putExtras(bundle);
+                                startActivity(iFriendFragment);
+                                mFirebaseAnalytics.logEvent("chat",bundle);
+                                finish();
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
-                else if (iChat.getStringExtra("From").equals("Message_Fragment")
-                        || iChat.getStringExtra("From").equals("MoreInfoMessage")){
-                    bundle.putInt("ReturnTab", 0);
-                }
-                bundle.putString("UID",FirebaseAuth.getInstance().getUid());
-                iFriendFragment.putExtras(bundle);
-                startActivity(iFriendFragment);
-                mFirebaseAnalytics.logEvent("chat",bundle);
-                finish();
+
                 break;
             case R.id.btnSendImage:
                 Intent iSendPicture = new Intent();
@@ -270,12 +315,6 @@ public class ChatWithDoctorActivity extends AppCompatActivity implements ValueEv
                 if(!contentMessage.isEmpty()){
                     pushMessage("text",contentMessage);
 
-//                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-
-//                    nodeGetMyName = FirebaseDatabase.getInstance().getReference().child("users").child(uidFriendChat).child("description");
-//                    nodeGetMyName.setValue("In Progress");
-//                    nodeGetMyName.updateChildren("").;
                 }
                 break;
             case R.id.btnOpenCamera:
@@ -363,14 +402,6 @@ public class ChatWithDoctorActivity extends AppCompatActivity implements ValueEv
                         .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-
-
-                                mAuthProgressDialog.show();
-                                mAuthProgressDialog= new ProgressDialog(ChatWithDoctorActivity.this);
-//                                    mAuthProgressDialog = new ProgressDialog(this);
-                                mAuthProgressDialog.setTitle("Loading...");
-                                mAuthProgressDialog.setMessage("Image Loading into Firebase...");
-                                mAuthProgressDialog.setCancelable(false);
 
                             }
                         });

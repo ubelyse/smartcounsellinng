@@ -21,6 +21,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
@@ -115,6 +116,8 @@ public class myadapter extends FirebaseRecyclerAdapter<Doctor,myadapter.myviewho
                     public void onClick(DialogInterface dialogInterface, int i) {
                         FirebaseDatabase.getInstance().getReference().child("doctors")
                                 .child(getRef(position).getKey()).removeValue();
+
+//                        FirebaseAuth.getInstance().deleteUser(uid);
                     }
                 });
 

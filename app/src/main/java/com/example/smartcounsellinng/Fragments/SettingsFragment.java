@@ -67,6 +67,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener{
                 firebaseAuth.getInstance().signOut();
                 saveFile();
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 getActivity().finish();
                 break;
