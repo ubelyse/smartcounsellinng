@@ -17,6 +17,7 @@ import com.example.smartcounsellinng.Activities.ChatWithFriendActivity;
 import com.example.smartcounsellinng.Activities.MainPatientActivity;
 import com.example.smartcounsellinng.Adapters.ViewPagerAdapter;
 import com.example.smartcounsellinng.Fragments.DoctorFragment;
+import com.example.smartcounsellinng.Fragments.DoctorSettingsFragment;
 import com.example.smartcounsellinng.Fragments.FriendsFragment;
 import com.example.smartcounsellinng.Fragments.MessagesFragment;
 import com.example.smartcounsellinng.Fragments.PersonalFragment;
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements TabHost.OnTabChan
         fragments.add(new FriendsFragment());
         fragments.add(new DoctorFragment());
         fragments.add(personalFragment);
-        fragments.add(new SettingsFragment());
+        fragments.add(new DoctorSettingsFragment());
 
         this.myViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragments);
         this.viewPager = (ViewPager) super.findViewById(R.id.viewPager);
