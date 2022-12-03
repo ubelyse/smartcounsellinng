@@ -65,7 +65,7 @@
             />
 
         <Button
-            android:id="@+id/editicon"
+            android:id="@+id/bediticon"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginStart="129dp"

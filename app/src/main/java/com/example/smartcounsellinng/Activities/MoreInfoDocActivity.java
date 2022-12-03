@@ -59,7 +59,7 @@ public class MoreInfoDocActivity extends AppCompatActivity implements ValueEvent
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_more_info);
+        setContentView(R.layout.activity_more_info_doc);
 
 
 
@@ -94,7 +94,7 @@ public class MoreInfoDocActivity extends AppCompatActivity implements ValueEvent
                 }
             });
 
-            editicon = findViewById(R.id.editicon);
+            editicon = findViewById(R.id.bediticon);
 
             editicon.setOnClickListener(new View.OnClickListener() {
                 @Override
