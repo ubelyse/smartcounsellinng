@@ -64,6 +64,13 @@
             android:text="Name"
             />
 
+<!--        <ImageView-->
+<!--            android:id="@+id/editicon"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_toEndOf="@+id/avatarMoreInfoProfile"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:src="@drawable/edit" />-->
+
     </RelativeLayout>
 
     <View

@@ -72,7 +72,7 @@ public class SearchProfileActivity extends AppCompatActivity{
         civAvatar = findViewById(R.id.profile_search);
 
         txtFullName = (TextView)findViewById(R.id.textViewFullNameSearch);
-        txtGender = (TextView)findViewById(R.id.textViewGenderSearch);
+//        txtGender = (TextView)findViewById(R.id.textViewGenderSearch);
         txtPhoneNumber = (TextView)findViewById(R.id.textViewPhoneNumberSearch);
         txtDateOfBirth = (TextView)findViewById(R.id.textViewDateofBirthSearch);
         txtAddress = (TextView)findViewById(R.id.textViewAddressSearch);
@@ -133,8 +133,8 @@ public class SearchProfileActivity extends AppCompatActivity{
                         txtPhoneNumber.setText(account.getPhoneNumber() + "");
                         txtDateOfBirth.setText(account.getDateOfBirth());
                         txtAddress.setText(account.getAddress());
-                        String gender = account.isGender()? "Addict": "Depression";
-                        txtGender.setText(gender);
+//                        String gender = account.isGender()? "Addict": "Depression";
+//                        txtGender.setText(gender);
                         txtDescription.setText(account.getDescription());
 
                         getAvatar();

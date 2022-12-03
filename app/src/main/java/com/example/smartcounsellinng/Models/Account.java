@@ -6,7 +6,7 @@ public class Account {
     private String fullName;
     private String address;
     private String description;
-    private boolean gender;
+//    private boolean gender;
     private String phoneNumber;
     private String dateOfBirth;
 
@@ -15,7 +15,7 @@ public class Account {
 
     }
 
-    public Account(String username, String description, String fullName, boolean gender, String address,
+    public Account(String username, String description, String fullName, String address,
                    String phoneNumber, String dateOfBirth) {
         this.username = username;
 
@@ -27,7 +27,7 @@ public class Account {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.dateOfBirth = dateOfBirth;
-        this.gender = gender;
+//        this.gender = gender;
     }
 
     public String getUsername() {
@@ -46,13 +46,13 @@ public class Account {
         this.fullName = fullName;
     }
 
-    public boolean isGender() {
-        return gender;
-    }
-
-    public void setGender(boolean gender) {
-        this.gender = gender;
-    }
+//    public boolean isGender() {
+//        return gender;
+//    }
+//
+//    public void setGender(boolean gender) {
+//        this.gender = gender;
+//    }
 
     public String getAddress() {
         return address;

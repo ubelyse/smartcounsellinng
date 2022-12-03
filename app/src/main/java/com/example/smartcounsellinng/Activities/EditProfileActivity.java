@@ -31,9 +31,9 @@ public class EditProfileActivity extends AppCompatActivity {
     public static final int REQUEST_CODE = 1;
     private Toolbar toolbar;
     private EditText txtFullName, txtAddress, txtPhoneNumber, txtDateOfBirth, txtDescription,txtRle;
-    private RadioGroup radioGroupGender;
+//    private RadioGroup radioGroupGender;
     private String uid, fullName, address, dateOfBirth, phoneNumber, description,description1,userName,role;
-    private boolean gender;
+//    private boolean gender;
     private Account account;
     private Doctor doctor;
     private FirebaseDatabase firebaseDatabase;
@@ -50,7 +50,7 @@ public class EditProfileActivity extends AppCompatActivity {
         txtPhoneNumber = findViewById(R.id.editTextPhoneNumber);
         txtRle = findViewById(R.id.editTextRole);
         txtDescription = findViewById(R.id.editTextDescription);
-        radioGroupGender = findViewById(R.id.radioGroupGender);
+//        radioGroupGender = findViewById(R.id.radioGroupGender);
 
         btnEdit = findViewById(R.id.buttonEditProfiles);
 
@@ -62,23 +62,23 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
-        radioGroupGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                int radioButtonID = radioGroupGender.getCheckedRadioButtonId();
-                View radioButton = radioGroupGender.findViewById(radioButtonID);
-                int idx = radioGroupGender.indexOfChild(radioButton);
-                RadioButton r = (RadioButton)radioGroupGender.getChildAt(idx);
-                String selectedtext = r.getText().toString();
-                if(selectedtext.equals("Addict")){
-                    gender = true;
-                }
-                else{
-                    gender = false;
-                }
-            }
-        });
+//        radioGroupGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//
+//            @Override
+//            public void onCheckedChanged(RadioGroup group, int checkedId) {
+//                int radioButtonID = radioGroupGender.getCheckedRadioButtonId();
+//                View radioButton = radioGroupGender.findViewById(radioButtonID);
+//                int idx = radioGroupGender.indexOfChild(radioButton);
+//                RadioButton r = (RadioButton)radioGroupGender.getChildAt(idx);
+//                String selectedtext = r.getText().toString();
+//                if(selectedtext.equals("Addict")){
+//                    gender = true;
+//                }
+//                else{
+//                    gender = false;
+//                }
+//            }
+//        });
 
 
         btnEdit.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +88,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 account.setFullName(txtFullName.getText().toString().trim());
                 account.setAddress(txtAddress.getText().toString().trim());
                 account.setPhoneNumber(txtPhoneNumber.getText().toString().trim());
-                account.setGender(gender);
+//                account.setGender(gender);
                 account.setDescription(txtDescription.getText().toString().trim());
                 account.setDateOfBirth(txtDateOfBirth.getText().toString().trim());
 
@@ -152,8 +152,8 @@ public class EditProfileActivity extends AppCompatActivity {
                 dateOfBirth = bundle.getString("DATEOFBIRTH");
                 description = bundle.getString("DESCRIPTION");
 
-                gender = bundle.getBoolean("DISEASE");
-                account = new Account(userName, description1, fullName, gender, address, phoneNumber, dateOfBirth);
+//                gender = bundle.getBoolean("DISEASE");
+                account = new Account(userName, description1, fullName, address, phoneNumber, dateOfBirth);
                 doctor=new Doctor(userName, phoneNumber, address, dateOfBirth, description, role, fullName);
 
 
@@ -165,11 +165,11 @@ public class EditProfileActivity extends AppCompatActivity {
             txtPhoneNumber.setText(account.getPhoneNumber() + "");
             txtDateOfBirth.setText(account.getDateOfBirth());
 
-            if (gender) {
-                ((RadioButton)radioGroupGender.getChildAt(1)).setChecked(true);
-            } else {
-                ((RadioButton)radioGroupGender.getChildAt(2)).setChecked(true);
-            }
+//            if (gender) {
+//                ((RadioButton)radioGroupGender.getChildAt(1)).setChecked(true);
+//            } else {
+//                ((RadioButton)radioGroupGender.getChildAt(2)).setChecked(true);
+//            }
             txtAddress.setText(account.getAddress());
             txtDescription.setText(account.getDescription());
         }

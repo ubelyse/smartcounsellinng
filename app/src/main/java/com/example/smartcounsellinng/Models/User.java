@@ -19,7 +19,7 @@ public class User {
     private String fullName;
     private String address;
     private String description;
-    private boolean gender;
+//    private boolean gender;
     private String phoneNumber;
     private String dateOfBirth;
     private String search;
@@ -27,7 +27,7 @@ public class User {
     public User() {
     }
 
-    public User(String id,String username, String fullName, String address, String description, boolean gender, String phoneNumber, String dateOfBirth, String search) {
+    public User(String id,String username, String fullName, String address, String description, String phoneNumber, String dateOfBirth, String search) {
         this.id = id;
         this.username = username;
         this.fullName = fullName;
@@ -36,7 +36,7 @@ public class User {
             this.description = "New";
         else
             this.description = description;
-        this.gender = gender;
+//        this.gender = gender;
         this.phoneNumber = phoneNumber;
         this.dateOfBirth = dateOfBirth;
         this.search = search;
@@ -82,13 +82,13 @@ public class User {
         this.description = description;
     }
 
-    public boolean isGender() {
-        return gender;
-    }
-
-    public void setGender(boolean gender) {
-        this.gender = gender;
-    }
+//    public boolean isGender() {
+//        return gender;
+//    }
+//
+//    public void setGender(boolean gender) {
+//        this.gender = gender;
+//    }
 
     public String getPhoneNumber() {
         return phoneNumber;

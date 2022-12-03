@@ -84,44 +84,44 @@
         android:layout_marginTop="@dimen/margin_top_register_10dp"
         />
 
-    <RadioGroup
-        android:id="@+id/radioGroupDisease"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginTop="@dimen/margin_top_register_10dp"
-        android:layout_below="@+id/editTextFullName"
-        android:orientation="horizontal">
+<!--    <RadioGroup-->
+<!--        android:id="@+id/radioGroupDisease"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="35dp"-->
+<!--        android:layout_marginEnd="30dp"-->
+<!--        android:layout_marginTop="@dimen/margin_top_register_10dp"-->
+<!--        android:layout_below="@+id/editTextFullName"-->
+<!--        android:orientation="horizontal">-->
 
 
-        <RadioButton
-            android:id="@+id/radioAddict"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Addict"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_edit_profile"
-            android:buttonTint="@color/black"
-            android:layout_marginStart="15dp"
-            android:checked="true"
-            />
+<!--        <RadioButton-->
+<!--            android:id="@+id/radioAddict"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Addict"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="@dimen/text_size_edit_profile"-->
+<!--            android:buttonTint="@color/black"-->
+<!--            android:layout_marginStart="15dp"-->
+<!--            android:checked="true"-->
+<!--            />-->
 
-        <RadioButton
-            android:id="@+id/radioDepressed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Depression"
-            android:textColor="@color/black"
-            android:buttonTint="@color/black"
-            android:textSize="@dimen/text_size_edit_profile"
-            android:layout_marginStart="10dp"/>
+<!--        <RadioButton-->
+<!--            android:id="@+id/radioDepressed"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Depression"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:buttonTint="@color/black"-->
+<!--            android:textSize="@dimen/text_size_edit_profile"-->
+<!--            android:layout_marginStart="10dp"/>-->
 
-    </RadioGroup>
+<!--    </RadioGroup>-->
 
     <EditText
         android:id="@+id/editTextAddress"
-        android:layout_below="@id/radioGroupDisease"
+        android:layout_below="@id/editTextFullName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"

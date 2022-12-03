@@ -20,6 +20,7 @@ import com.example.smartcounsellinng.Activities.ChangePassWordActivity;
 
 import com.example.smartcounsellinng.Activities.LoginActivity;
 import com.example.smartcounsellinng.R;
+import com.example.smartcounsellinng.Reports.ShowDocUsers;
 import com.example.smartcounsellinng.Reports.ShowUsers;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -81,7 +82,7 @@ public class DoctorSettingsFragment extends Fragment implements View.OnClickList
                 startActivity(intent2);
                 break;
             case  R.id.btnAccountUsersList:
-                Intent intent3 = new Intent(getActivity(), ShowUsers.class);
+                Intent intent3 = new Intent(getActivity(), ShowDocUsers.class);
                 startActivity(intent3);
                 break;
             case R.id.btnAboutApp:

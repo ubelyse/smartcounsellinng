@@ -23,11 +23,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Reports.ShowDocUsers"/>
+        <activity
             android:name=".Activities.HeadDoctorRegister"
             android:screenOrientation="portrait"
-            android:theme="@style/AllTheme"/>
-        <activity
-            android:name=".Activities.ShowHeadDoctors"/>
+            android:theme="@style/AllTheme" />
+        <activity android:name=".Activities.ShowHeadDoctors" />
         <activity
             android:name=".Activities.MainHeadActivity"
             android:screenOrientation="portrait"

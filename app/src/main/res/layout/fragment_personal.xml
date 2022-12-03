@@ -65,31 +65,7 @@
             android:shrinkColumns="*"
             android:stretchColumns="*">
 
-            <TableRow>
-                <TextView
-                    android:id="@+id/labelGender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_table_row"
-                    android:layout_marginBottom="@dimen/margin_table_row"
-                    android:text="Disease"
-                    android:textStyle="bold"
-                    android:paddingLeft="@dimen/padding_left_table_row"
-                    android:textSize="@dimen/text_size_fragment_personal"
-                    android:layout_span="1"/>
-
-                <TextView
-                    android:id="@+id/textViewGender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_table_row"
-                    android:layout_marginBottom="@dimen/margin_table_row"
-                    android:textSize="@dimen/text_size_fragment_personal"
-                    android:layout_span="7"/>
-            </TableRow>
-
             <View android:background="@color/gray"
-                android:id="@+id/lblgender"
                 android:layout_width ="match_parent"
                 android:layout_height="1dip"
                 android:layout_marginTop="2dp"

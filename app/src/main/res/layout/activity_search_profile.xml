@@ -86,28 +86,28 @@
             android:shrinkColumns="*"
             android:stretchColumns="*">
 
-            <TableRow>
-                <TextView
-                    android:id="@+id/labelGenderSearch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_table_row_search_profile"
-                    android:layout_marginBottom="@dimen/margin_table_row_search_profile"
-                    android:text="Disease"
-                    android:textStyle="bold"
-                    android:paddingLeft="@dimen/padding_left_table_row"
-                    android:textSize="@dimen/text_size_fragment_personal"
-                    android:layout_span="1"/>
+<!--            <TableRow>-->
+<!--                <TextView-->
+<!--                    android:id="@+id/labelGenderSearch"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="@dimen/margin_table_row_search_profile"-->
+<!--                    android:layout_marginBottom="@dimen/margin_table_row_search_profile"-->
+<!--                    android:text="Disease"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:paddingLeft="@dimen/padding_left_table_row"-->
+<!--                    android:textSize="@dimen/text_size_fragment_personal"-->
+<!--                    android:layout_span="1"/>-->
 
-                <TextView
-                    android:id="@+id/textViewGenderSearch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size_fragment_personal"
-                    android:layout_marginTop="@dimen/margin_table_row_search_profile"
-                    android:layout_marginBottom="@dimen/margin_table_row_search_profile"
-                    android:layout_span="7"/>
-            </TableRow>
+<!--                <TextView-->
+<!--                    android:id="@+id/textViewGenderSearch"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="@dimen/text_size_fragment_personal"-->
+<!--                    android:layout_marginTop="@dimen/margin_table_row_search_profile"-->
+<!--                    android:layout_marginBottom="@dimen/margin_table_row_search_profile"-->
+<!--                    android:layout_span="7"/>-->
+<!--            </TableRow>-->
 
             <View android:background="@color/gray"
                 android:layout_width ="match_parent"

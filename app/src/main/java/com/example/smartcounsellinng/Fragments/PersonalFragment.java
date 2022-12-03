@@ -66,8 +66,8 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
     Button btnEditProfile;
     private Cursor cursor;
     private int columnIndex;
-    private TextView txtPhoneNumber, txtDateOfBirth, txtAddress,txtGender, txtFullName, txtDescription,labelgender;
-    private View labgen;
+    private TextView txtPhoneNumber, txtDateOfBirth, txtAddress, txtFullName, txtDescription;
+//    private View labgen;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -99,10 +99,10 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
         txtPhoneNumber = v.findViewById(R.id.textViewPhoneNumber);
         txtDateOfBirth = v.findViewById(R.id.textViewDateofBirth);
         txtAddress = v.findViewById(R.id.textViewAddress);
-        txtGender = v.findViewById(R.id.textViewGender);
-        labgen = v.findViewById(R.id.lblgender);
-
-        labelgender= v.findViewById(R.id.labelGender);
+//        txtGender = v.findViewById(R.id.textViewGender);
+//        labgen = v.findViewById(R.id.lblgender);
+//
+//        labelgender= v.findViewById(R.id.labelGender);
         txtDescription = v.findViewById(R.id.textViewDescription);
         isNotify = false;
 
@@ -143,8 +143,8 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
                     txtPhoneNumber.setText(account.getPhoneNumber()+"");
                     txtDateOfBirth.setText(account.getDateOfBirth());
                     txtAddress.setText(account.getAddress());
-                    String gender = account.isGender() ? "Addict" : "Depression";
-                    txtGender.setText(gender);
+//                    String gender = account.isGender() ? "Addict" : "Depression";
+//                    txtGender.setText(gender);
                     txtDescription.setText(account.getDescription());
                 }
             }
@@ -170,9 +170,9 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
                     txtPhoneNumber.setText(account.getPhoneNumber()+"");
                     txtDateOfBirth.setText(account.getDateOfBirth());
                     txtAddress.setText(account.getAddress());
-                    txtGender.setVisibility(View.INVISIBLE);
-                    labelgender.setVisibility(View.INVISIBLE);
-                    labgen.setVisibility(View.INVISIBLE);
+//                    txtGender.setVisibility(View.INVISIBLE);
+//                    labelgender.setVisibility(View.INVISIBLE);
+//                    labgen.setVisibility(View.INVISIBLE);
                     txtDescription.setText(account.getDescription());
                 }
             }
@@ -198,9 +198,9 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
                     txtPhoneNumber.setText(account.getPhoneNumber()+"");
                     txtDateOfBirth.setText(account.getDateOfBirth());
                     txtAddress.setText(account.getAddress());
-                    txtGender.setVisibility(View.INVISIBLE);
-                    labelgender.setVisibility(View.INVISIBLE);
-                    labgen.setVisibility(View.INVISIBLE);
+//                    txtGender.setVisibility(View.INVISIBLE);
+//                    labelgender.setVisibility(View.INVISIBLE);
+//                    labgen.setVisibility(View.INVISIBLE);
                     txtDescription.setText(account.getDescription());
                 }
             }
@@ -368,7 +368,7 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
                 bundle.putString("USERID",uid);
                 bundle.putString("USERNAME",account.getUsername());
                 bundle.putString("FULLNAME",account.getFullName());
-                bundle.putBoolean("DISEASE",account.isGender());
+//                bundle.putBoolean("DISEASE",account.isGender());
                 bundle.putString("ADDRESS",account.getAddress());
                 bundle.putString("PHONENUMBER",account.getPhoneNumber());
                 bundle.putString("DATEOFBIRTH",account.getDateOfBirth());

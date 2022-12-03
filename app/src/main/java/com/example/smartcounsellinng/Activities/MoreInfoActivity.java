@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -14,8 +16,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcounsellinng.Adapters.ListMediaStorageAdapter;
+import com.example.smartcounsellinng.Adapters.UserDocadapter;
 import com.example.smartcounsellinng.Models.Account;
 import com.example.smartcounsellinng.Models.Message;
+import com.example.smartcounsellinng.Models.User;
 import com.example.smartcounsellinng.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,15 +32,19 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageException;
 import com.google.firebase.storage.StorageReference;
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.ViewHolder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MoreInfoActivity extends AppCompatActivity implements ValueEventListener {
 
-    ImageView btnBackToMessage;
+    ImageView btnBackToMessage,editicon;
     TextView textViewNameFriend, profileMoreInfoMessage;
     CircleImageView avatarMoreInfoProfile;
     Intent iMoreInfo;
@@ -51,6 +59,8 @@ public class MoreInfoActivity extends AppCompatActivity implements ValueEventLis
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more_info);
+
+
 
         iMoreInfo = getIntent();
 
@@ -82,6 +92,68 @@ public class MoreInfoActivity extends AppCompatActivity implements ValueEventLis
                     finish();
                 }
             });
+
+//            editicon = findViewById(R.id.editicon);
+//
+//            editicon.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    final DialogPlus dialogPlus=DialogPlus.newDialog(view.getContext())
+//                            .setContentHolder(new ViewHolder(R.layout.dialogcontentpatient))
+//                            .setExpanded(true,1100)
+//                            .create();
+//
+////                    DialogPlus dialogPlus1 = DialogPlus.newDialog();
+//
+//                    View myview=dialogPlus.getHolderView();
+//                    final EditText address=myview.findViewById(R.id.address);
+//                    final EditText descri=myview.findViewById(R.id.descri);
+//                    final EditText name=myview.findViewById(R.id.uname);
+//                    final EditText phoneno=myview.findViewById(R.id.dphone);
+////                    final EditText role=myview.findViewById(R.id.drole);
+//                    final EditText email=myview.findViewById(R.id.uemail);
+//
+//                    Button submit=myview.findViewById(R.id.usubmit);
+//
+//                    address.setText(account.getAddress());
+//                    descri.setText(account.getDescription());
+//                    name.setText(nameFriend);
+//                    phoneno.setText(phoneNumberFriend);
+//                    email.setText(nameFriend);
+////                role.setText(model.isGender());
+//
+//                    dialogPlus.show();
+//                    submit.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            Map<String,Object> map=new HashMap<>();
+//                            map.put("address",address.getText().toString());
+//                            map.put("description",descri.getText().toString());
+//                            map.put("fullName",name.getText().toString());
+//                            map.put("phoneNumber",phoneno.getText().toString());
+//                            map.put("email",email.getText().toString());
+////                        map.put("disease",role.getText().toString());
+//
+//                            FirebaseDatabase.getInstance().getReference().child("users")
+//                                    .child(uidFriend).updateChildren(map)
+//                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                        @Override
+//                                        public void onSuccess(Void aVoid) {
+//                                            dialogPlus.dismiss();
+//                                        }
+//                                    })
+//                                    .addOnFailureListener(new OnFailureListener() {
+//                                        @Override
+//                                        public void onFailure(@NonNull Exception e) {
+//                                            dialogPlus.dismiss();
+//                                        }
+//                                    });
+//                        }
+//                    });
+//
+//
+//                }
+//            });
 
             listImages = new ArrayList<>();
             adapter = new ListMediaStorageAdapter(MoreInfoActivity.this,R.layout.item_image_in_list_storage,listImages);

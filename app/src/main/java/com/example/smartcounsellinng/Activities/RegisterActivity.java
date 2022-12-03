@@ -42,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnFocusC
     private FirebaseAnalytics mFirebaseAnalytics;
     private Date date;
     private String dateOfBirth;
-    private boolean disease=true;
+//    private boolean disease=true;
 
     private ProgressDialog mAuthProgressDialog;
     @Override
@@ -66,24 +66,24 @@ public class RegisterActivity extends AppCompatActivity implements View.OnFocusC
         txtDateofBirth = findViewById(R.id.editTextDateOfBirth);
         txtDateofBirth.setOnFocusChangeListener(this);
 
-        radioGroupdiseases = findViewById(R.id.radioGroupDisease);
-        radioGroupdiseases.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                int radioButtonID = radioGroupdiseases.getCheckedRadioButtonId();
-                View radioButton = radioGroupdiseases.findViewById(radioButtonID);
-                int idx = radioGroupdiseases.indexOfChild(radioButton);
-                RadioButton r = (RadioButton)radioGroupdiseases.getChildAt(idx);
-                String selectedtext = r.getText().toString();
-                if(selectedtext.equals("Addict")){
-                    disease = true;
-                }
-                else{
-                    disease = false;
-                }
-            }
-        });
+//        radioGroupdiseases = findViewById(R.id.radioGroupDisease);
+//        radioGroupdiseases.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//
+//            @Override
+//            public void onCheckedChanged(RadioGroup group, int checkedId) {
+//                int radioButtonID = radioGroupdiseases.getCheckedRadioButtonId();
+//                View radioButton = radioGroupdiseases.findViewById(radioButtonID);
+//                int idx = radioGroupdiseases.indexOfChild(radioButton);
+//                RadioButton r = (RadioButton)radioGroupdiseases.getChildAt(idx);
+//                String selectedtext = r.getText().toString();
+//                if(selectedtext.equals("Addict")){
+//                    disease = true;
+//                }
+//                else{
+//                    disease = false;
+//                }
+//            }
+//        });
 
         mFirebaseAnalytics.setUserProperty("dateOfBirth", dateOfBirth);
 
@@ -168,7 +168,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnFocusC
                                             Toast.LENGTH_SHORT).show();
                                 } else {
                                     Toast.makeText(RegisterActivity.this, "Registration is complete!", Toast.LENGTH_SHORT).show();
-                                    Account account = new Account(email, "", fullname, disease, address, phonenumber, dateOfBirth);
+                                    Account account = new Account(email, "", fullname, address, phonenumber, dateOfBirth);
                                     String uid = firebaseAuth.getCurrentUser().getUid();
                                     databaseReference.child("users").child(uid).setValue(account);
                                     startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
