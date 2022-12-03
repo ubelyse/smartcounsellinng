@@ -23,7 +23,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Reports.ShowDocUsers"/>
+            android:name=".MoreInfoDocActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity android:name=".Reports.ShowDocUsers" />
         <activity
             android:name=".Activities.HeadDoctorRegister"
             android:screenOrientation="portrait"

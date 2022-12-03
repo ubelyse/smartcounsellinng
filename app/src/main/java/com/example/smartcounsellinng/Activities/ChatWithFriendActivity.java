@@ -117,7 +117,7 @@ public class ChatWithFriendActivity extends AppCompatActivity implements ValueEv
         btnMoreInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent iMoreInfo = new Intent(ChatWithFriendActivity.this,MoreInfoActivity.class);
+                Intent iMoreInfo = new Intent(ChatWithFriendActivity.this,MoreInfoDocActivity.class);
                 iMoreInfo.putExtra("UID",uidFriendChat);
                 iMoreInfo.putExtra("Name",nameFriendChat);
                 startActivity(iMoreInfo);
