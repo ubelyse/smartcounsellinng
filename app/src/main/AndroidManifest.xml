@@ -23,7 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MoreInfoDocActivity"
+            android:name=".Activities.MoreInfoDocActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
