@@ -100,7 +100,7 @@ public class MoreInfoDocActivity extends AppCompatActivity implements ValueEvent
                 @Override
                 public void onClick(View v) {
                     nodeGetMyName = FirebaseDatabase.getInstance().getReference().child("users").child(uidFriend).child("description");
-                    nodeGetMyName.setValue("In Progress");
+                    nodeGetMyName.setValue("Complete");
                 }
             });
 
