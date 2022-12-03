@@ -71,6 +71,7 @@
             android:layout_marginStart="129dp"
             android:layout_toEndOf="@+id/avatarMoreInfoProfile"
             android:text="Mark as Healed"
+            android:background="@color/white"
             android:textColor="@color/black" />
 
     </RelativeLayout>
